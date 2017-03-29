@@ -68,6 +68,16 @@ public class Characters extends javax.swing.JPanel {
         
     }
     
+    //This will take the move and the character stats and sends it to action class which will send it to the server    
+    public void attackdamage(){
+        
+    }
+    
+    //This gets the attack damage the other players does and determines damage delt to the character
+    public void defence(){
+        
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
 }
