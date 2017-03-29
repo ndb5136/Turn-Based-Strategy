@@ -64,10 +64,11 @@ public class Server
                 }
                 
                 //if the room has 2 players, let the client know the room is full
-                if(i == maxClientCount)
+                if(i >= maxClientCount)
                 {
+                    Action action = new Action("Server has 2 players already");
                     output = new ObjectOutputStream(clientSocket.getOutputStream());
-                    output.writeObject("Server has 2 players already");
+                    output.writeObject(action);
                 }                
             } 
             catch (IOException ex) 
