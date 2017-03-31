@@ -66,7 +66,6 @@ public class Client implements Runnable
         try 
         {
             //Close the output, input and socket
-            input = null;
             output.close();
             input.close();
             clientSocket.close();
@@ -150,6 +149,7 @@ public class Client implements Runnable
         
         communicate();
         
-        //closeClient();
+        if (closed == true)
+            closeClient();
     }
 }

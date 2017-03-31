@@ -44,7 +44,6 @@ public class Server
         {
             System.out.println(e);
         }
-        
         while (true)
         {
             try 
@@ -122,7 +121,8 @@ public class Server
                     
                 //Write the waiting action to the socket
                 output.writeObject(action);
-                    
+                Action action2 = new Action("end");
+                output.writeObject(action2);    
                 try 
                 {
                     //Read in the player from the client
