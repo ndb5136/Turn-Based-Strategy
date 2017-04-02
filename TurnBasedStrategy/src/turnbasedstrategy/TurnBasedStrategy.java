@@ -1,9 +1,6 @@
 
 package turnbasedstrategy;
 
-import javax.swing.JDialog;
-import javax.swing.JPanel;
-import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
 /**
  *
@@ -12,9 +9,9 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 public class TurnBasedStrategy {
 
     public static void main(String[] args) {
-        jfCharacters character = new jfCharacters();  
+        jfPlayer player = new jfPlayer();
         
-        character.setVisible(true);
+        player.setVisible(true);
     }
     
 }

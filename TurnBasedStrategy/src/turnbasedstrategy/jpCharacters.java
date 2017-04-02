@@ -23,8 +23,8 @@ public class jpCharacters extends javax.swing.JPanel {
     DBConnection connect = new DBConnection();
     Connection con = connect.connectToDB();
     // Declare character name and stats variables
-    static int ID;
-    String characterName;
+    int ID;
+    static String characterName;
     double physicalAttack;
     double specialAttack;
     double physicalDefense;
@@ -47,13 +47,14 @@ public class jpCharacters extends javax.swing.JPanel {
      */
     public jpCharacters() {
         initComponents();
+        jButton3.setEnabled(false);
     }  
     
     public void finalize(){
         try {
             con.close();
         } catch (SQLException ex) {
-            Logger.getLogger(jfCharacters.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(jpCharacters.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -96,6 +97,7 @@ public class jpCharacters extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextPane1 = new javax.swing.JTextPane();
         jLabel8 = new javax.swing.JLabel();
+        jButton4 = new javax.swing.JButton();
 
         jLabel1.setText("Health");
 
@@ -162,6 +164,13 @@ public class jpCharacters extends javax.swing.JPanel {
 
         jLabel8.setText("Level");
 
+        jButton4.setText("Close");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -205,7 +214,10 @@ public class jpCharacters extends javax.swing.JPanel {
                             .addComponent(jScrollPane8, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(188, 188, 188)
+                        .addComponent(jButton4)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -256,6 +268,8 @@ public class jpCharacters extends javax.swing.JPanel {
                     .addComponent(jButton1)
                     .addComponent(jButton2)
                     .addComponent(jButton3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton4)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -274,8 +288,9 @@ public class jpCharacters extends javax.swing.JPanel {
         jdCharacters.setSize(400, 350);
         jdCharacters.setModal(true);
         jdCharacters.setVisible(true);
-        characterName = characters.characterName;
-        
+        characterName = jpNewCharacter.characterName;
+
+        jButton3.setEnabled(true);
         newCharacter();
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -289,14 +304,41 @@ public class jpCharacters extends javax.swing.JPanel {
         jdCharacters.setSize(400, 100);
         jdCharacters.setModal(true);
         jdCharacters.setVisible(true);
-        characterName = characters.characterName;
+        characterName = jpLoadCharacter.characterName;
         
+        jButton3.setEnabled(true);
         loadCharacter();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        try {
+            ps = con.prepareStatement("SELECT characterName FROM defaultCharacters;");
+        
+            rs = ps.executeQuery();
+            rsMD = rs.getMetaData();
+            column = rsMD.getColumnCount();
+            int x = 0;
+            while(rs.next() == true){
+                for(int n = 1; n <= column; n++){
+                    S = rs.getString(n);
+                    if(characterName.equals(S))
+                        x++;
+                }
+            }
+            if(x == 0){    
+                this.getTopLevelAncestor().setVisible(false);
+            }
+            else{
+                JOptionPane.showMessageDialog(frame, "Please save your character before continuing.", "Error", JOptionPane.ERROR_MESSAGE);    
+            }
+        } catch (SQLException ex) {
+        Logger.getLogger(jpCharacters.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     // Choose new character type and load base stats from the server
     public void newCharacter(){
@@ -461,14 +503,29 @@ public class jpCharacters extends javax.swing.JPanel {
                         x++;
                 }
             }
-            if(x == 0){    
+            ps = con.prepareStatement("SELECT characterName FROM defaultCharacters;");
+        
+            rs = ps.executeQuery();
+            rsMD = rs.getMetaData();
+            column = rsMD.getColumnCount();
+            int y = 0;
+            while(rs.next() == true){
+                for(int n = 1; n <= column; n++){
+                    S = rs.getString(n);
+                    if(characterName.equals(S))
+                        y++;
+                }
+            }
+            if(x == 0 && y == 0){    
                 ps = con.prepareStatement("INSERT INTO characters (characterName, health, mana, attack, specialAttack, defense, specialDefense, speed, exp) VALUES ("
                 + "'" + characterName + "', " + health + ", " + mana + ", " + physicalAttack + ", " + specialAttack + ", " + physicalDefense + ", " + specialDefense + ", " + speed + ", " + exp + ");");
                 ps.executeUpdate();
             }
-            else{
+            else if (x > 1){
                 JOptionPane.showMessageDialog(frame, "That name has already been taken. Please choose a new name.", "Error", JOptionPane.ERROR_MESSAGE);    
             }
+            else
+                JOptionPane.showMessageDialog(frame, "That name is a default character name. Please choose a new name.", "Error", JOptionPane.ERROR_MESSAGE);
         } catch (SQLException ex) {
         Logger.getLogger(jpCharacters.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -478,6 +535,7 @@ public class jpCharacters extends javax.swing.JPanel {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
