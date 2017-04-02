@@ -315,28 +315,33 @@ public class jpCharacters extends javax.swing.JPanel {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        try {
-            ps = con.prepareStatement("SELECT characterName FROM defaultCharacters;");
-        
-            rs = ps.executeQuery();
-            rsMD = rs.getMetaData();
-            column = rsMD.getColumnCount();
-            int x = 0;
-            while(rs.next() == true){
-                for(int n = 1; n <= column; n++){
-                    S = rs.getString(n);
-                    if(characterName.equals(S))
-                        x++;
+        if(characterName == null){
+            JOptionPane.showMessageDialog(frame, "Please choose a character.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        else{
+            try {
+                ps = con.prepareStatement("SELECT characterName FROM defaultCharacters;");
+
+                rs = ps.executeQuery();
+                rsMD = rs.getMetaData();
+                column = rsMD.getColumnCount();
+                int x = 0;
+                while(rs.next() == true){
+                    for(int n = 1; n <= column; n++){
+                        S = rs.getString(n);
+                        if(characterName.equals(S))
+                            x++;
+                    }
                 }
+                if(x == 0){    
+                    this.getTopLevelAncestor().setVisible(false);
+                }
+                else{
+                    JOptionPane.showMessageDialog(frame, "Please save your character before continuing.", "Error", JOptionPane.ERROR_MESSAGE);    
+                }
+            } catch (SQLException ex) {
+            Logger.getLogger(jpCharacters.class.getName()).log(Level.SEVERE, null, ex);
             }
-            if(x == 0){    
-                this.getTopLevelAncestor().setVisible(false);
-            }
-            else{
-                JOptionPane.showMessageDialog(frame, "Please save your character before continuing.", "Error", JOptionPane.ERROR_MESSAGE);    
-            }
-        } catch (SQLException ex) {
-        Logger.getLogger(jpCharacters.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
@@ -521,7 +526,7 @@ public class jpCharacters extends javax.swing.JPanel {
                 + "'" + characterName + "', " + health + ", " + mana + ", " + physicalAttack + ", " + specialAttack + ", " + physicalDefense + ", " + specialDefense + ", " + speed + ", " + exp + ");");
                 ps.executeUpdate();
             }
-            else if (x > 1){
+            else if (x > 0){
                 JOptionPane.showMessageDialog(frame, "That name has already been taken. Please choose a new name.", "Error", JOptionPane.ERROR_MESSAGE);    
             }
             else

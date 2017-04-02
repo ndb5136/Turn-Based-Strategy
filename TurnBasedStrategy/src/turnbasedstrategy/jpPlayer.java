@@ -55,6 +55,11 @@ public class jpPlayer extends javax.swing.JPanel {
                 Logger.getLogger(jpPlayer.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        else{
+            jButton2.setEnabled(false);
+            jButton3.setEnabled(false);
+        }
+            
     }
 
     /**
@@ -174,29 +179,29 @@ public class jpPlayer extends javax.swing.JPanel {
         jdCharacters.setModal(true);
         jdCharacters.setVisible(true);
         
-        
-        if(jpCharacters.characterName != null){
-            try {
-                characterName = jpCharacters.characterName;
-                jTextPane2.setText(characterName);
+        try {
+            characterName = jpCharacters.characterName;
+            jTextPane2.setText(characterName);
                 
-                ps = con.prepareStatement("SELECT exp FROM characters WHERE characterName = '" + characterName + "';");
-                rs = ps.executeQuery();
-                S = rs.getString(1);
-                exp = Integer.parseInt(S);
+            ps = con.prepareStatement("SELECT exp FROM characters WHERE characterName = '" + characterName + "';");
+            rs = ps.executeQuery();
+            S = rs.getString(1);
+            exp = Integer.parseInt(S);
                 
-                int z = 100;
-                level = 1;
-                while(exp > z){
-                    level++;
-                    z = z + (level * 100);
-                }                
-                S = Integer.toString(level);
-                jTextPane3.setText(S);
-            } catch (SQLException ex) {
-                Logger.getLogger(jpPlayer.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            int z = 100;
+            level = 1;
+            while(exp > z){
+                level++;
+                z = z + (level * 100);
+            }                
+            S = Integer.toString(level);
+            jTextPane3.setText(S);
+        } catch (SQLException ex) {
+            Logger.getLogger(jpPlayer.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        jButton2.setEnabled(true);
+        jButton3.setEnabled(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
