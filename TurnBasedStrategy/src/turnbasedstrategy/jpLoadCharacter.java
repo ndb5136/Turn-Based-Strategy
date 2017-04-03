@@ -34,7 +34,7 @@ public class jpLoadCharacter extends javax.swing.JPanel {
     public jpLoadCharacter() {
         initComponents();
         try {
-            ps = con.prepareStatement("SELECT characterName FROM characters;");
+            ps = con.prepareStatement("SELECT characterName FROM characters WHERE playerID = " + jpPlayer.playerID + ";");
             rs = ps.executeQuery();
             rsMD = rs.getMetaData();
             column = rsMD.getColumnCount();
@@ -103,6 +103,12 @@ public class jpLoadCharacter extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         characterName = jComboBox1.getItemAt(jComboBox1.getSelectedIndex());
+        try {
+            ps.close();
+            con.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(jpLoadCharacter.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.getTopLevelAncestor().setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
     

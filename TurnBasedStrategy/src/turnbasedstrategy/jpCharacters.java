@@ -511,8 +511,9 @@ public class jpCharacters extends javax.swing.JPanel {
                         x++;
                 }
             }
+            ps.close();
+            
             ps = con.prepareStatement("SELECT characterName FROM defaultCharacters;");
-        
             rs = ps.executeQuery();
             rsMD = rs.getMetaData();
             column = rsMD.getColumnCount();
@@ -524,10 +525,13 @@ public class jpCharacters extends javax.swing.JPanel {
                         y++;
                 }
             }
+            ps.close();
+            
             if(x == 0 && y == 0){    
-                ps = con.prepareStatement("INSERT INTO characters (characterName, health, mana, attack, specialAttack, defense, specialDefense, speed, exp) VALUES ("
-                + "'" + characterName + "', " + health + ", " + mana + ", " + physicalAttack + ", " + specialAttack + ", " + physicalDefense + ", " + specialDefense + ", " + speed + ", " + exp + ");");
+                ps = con.prepareStatement("INSERT INTO characters (playerID, characterName, health, mana, attack, specialAttack, defense, specialDefense, speed, exp) VALUES ("
+                + jpPlayer.playerID + ", '" + characterName + "', " + health + ", " + mana + ", " + physicalAttack + ", " + specialAttack + ", " + physicalDefense + ", " + specialDefense + ", " + speed + ", " + exp + ");");
                 ps.executeUpdate();
+                ps.close();
             }
             else if (x > 0){
                 JOptionPane.showMessageDialog(frame, "That name has already been taken. Please choose a new name.", "Error", JOptionPane.ERROR_MESSAGE);    

@@ -20,6 +20,8 @@ public class jpPlayer extends javax.swing.JPanel {
     DBConnection connect = new DBConnection();
     Connection con = connect.connectToDB();
     
+    static int playerID;
+    String username;
     String characterName;
     int level;
     int exp;
@@ -33,6 +35,20 @@ public class jpPlayer extends javax.swing.JPanel {
      */
     public jpPlayer() {
         initComponents();
+        
+        username = jpLogin.username;
+        jTextPane1.setText(username);
+        
+        try {
+            ps = con.prepareStatement("SELECT ID FROM player WHERE username = '" + username + "';");
+            rs = ps.executeQuery();
+            S = rs.getString(1);
+            playerID = Integer.parseInt(S);
+                    
+        } catch (SQLException ex) {
+            Logger.getLogger(jpPlayer.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         if(jpCharacters.characterName != null){
             try {
                 characterName = jpCharacters.characterName;
@@ -59,7 +75,7 @@ public class jpPlayer extends javax.swing.JPanel {
             jButton2.setEnabled(false);
             jButton3.setEnabled(false);
         }
-            
+        
     }
 
     /**
@@ -83,6 +99,7 @@ public class jpPlayer extends javax.swing.JPanel {
         jTextPane3 = new javax.swing.JTextPane();
         jLabel2 = new javax.swing.JLabel();
 
+        jTextPane1.setEditable(false);
         jScrollPane1.setViewportView(jTextPane1);
 
         jButton1.setText("View Character");
@@ -106,10 +123,12 @@ public class jpPlayer extends javax.swing.JPanel {
             }
         });
 
+        jTextPane2.setEditable(false);
         jScrollPane2.setViewportView(jTextPane2);
 
         jLabel1.setText("Selected Character");
 
+        jTextPane3.setEditable(false);
         jScrollPane3.setViewportView(jTextPane3);
 
         jLabel2.setText("Level");
@@ -150,9 +169,7 @@ public class jpPlayer extends javax.swing.JPanel {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(8, 8, 8)
-                        .addComponent(jLabel2))
+                    .addComponent(jLabel2)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 295, Short.MAX_VALUE)
                 .addComponent(jButton2)
@@ -169,6 +186,12 @@ public class jpPlayer extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try {
+            ps.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(jpPlayer.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         jpCharacters characters = new jpCharacters();
         characters.setVisible(true);
         JDialog jdCharacters = new JDialog();
