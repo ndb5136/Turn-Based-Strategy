@@ -48,6 +48,9 @@ public class jpCharacters extends javax.swing.JPanel {
     public jpCharacters() {
         initComponents();
         jButton3.setEnabled(false);
+        if(characterName != null){
+            loadCharacter();
+        }
     }  
     
     public void finalize(){
