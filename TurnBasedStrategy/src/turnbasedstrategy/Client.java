@@ -63,6 +63,7 @@ public class Client implements Runnable
      */
     public static void closeClient()
     {
+        
         try 
         {
             //Close the output, input and socket
@@ -126,8 +127,9 @@ public class Client implements Runnable
                 System.out.println(response);
                 
                 //if the response is an end message, break the loop
-                if(response.toString().equals("end"))
+                if(response.toString().equals("end")){
                     break;
+                }
                 if(response.toString().equals("Server has 2 players already"))
                     break;
             }

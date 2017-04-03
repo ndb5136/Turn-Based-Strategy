@@ -8,6 +8,7 @@ import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+
 /**
  * Server application to run the Skirym 411 game
  * @author Nick Beliveau
@@ -21,6 +22,9 @@ public class Server
     private ServerSocket serverSocket = null;
     private Socket clientSocket;
     private ObjectOutputStream output;
+    private Action response;
+    private static ObjectInputStream input;
+    private int clientnumber=0;
     
     //Declare thread variables
     private static final int maxClientCount = 2;
@@ -44,20 +48,27 @@ public class Server
         {
             System.out.println(e);
         }
+        try {
+            if (clientSocket!= null){
+                input = new ObjectInputStream(clientSocket.getInputStream());}
+        } catch (IOException ex) {
+            Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+        }
         while (true)
         {
             try 
             {
                 //Connect to the client socket
                 clientSocket = serverSocket.accept();
-                
-                int i;
                 //Get the threads
-                for(i = 0; i < maxClientCount; i++)
+                int i;
+                for(i = clientnumber; i < maxClientCount; i++)
                 {
+                    threads[i]=null;
                     if(threads[i] == null)
                     {
                         (threads[i] = new clientThread(clientSocket, threads)).start();
+                        clientnumber++;
                         break;
                     }
                 }
@@ -122,7 +133,8 @@ public class Server
                 //Write the waiting action to the socket
                 output.writeObject(action);
                 Action action2 = new Action("end");
-                output.writeObject(action2);    
+                output.writeObject(action2); 
+                clientnumber--;
                 try 
                 {
                     //Read in the player from the client
