@@ -19,26 +19,34 @@ import javax.swing.JPanel;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
 /**
- *
- * @author Cody Zerbe
+ * Class for the login page of the game.
+ * 
+ * @author  Cody Zerbe      4/3/17 - Created the file and most of the functionality
+ *          Nick Beliveau   4/5/17 - Began commenting and renamed variables of visual components
+ *                    Notes : Confused about the loop on line 177. Is this to get multiple results with the same name?
  */
 public class jpLogin extends javax.swing.JPanel {
 
+    //Database variables
     DBConnection connect = new DBConnection();
     Connection con = connect.connectToDB();
        
+    //Variables for user interaction
     static String username;
     String password;
     PreparedStatement ps;
     ResultSet rs;
     ResultSetMetaData rsMD;
     int column;
-    String S;
+    String S;               //TODO Can we come up with a more meaningful name for this?
     JFrame frame;
+    
+    
     /**
      * Creates new form jpLogin
      */
-    public jpLogin() {
+    public jpLogin() 
+    {
         initComponents();
     }
 
@@ -51,34 +59,34 @@ public class jpLogin extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        jbLogin = new javax.swing.JButton();
+        jbSignUp = new javax.swing.JButton();
+        tfUsername = new javax.swing.JTextField();
+        jlUsername = new javax.swing.JLabel();
+        jlPassword = new javax.swing.JLabel();
+        tfPassword = new javax.swing.JPasswordField();
 
-        jButton1.setText("Login");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jbLogin.setText("Login");
+        jbLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jbLoginActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Sign Up");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jbSignUp.setText("Sign Up");
+        jbSignUp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jbSignUpActionPerformed(evt);
             }
         });
 
-        jLabel1.setText("Username:");
+        jlUsername.setText("Username:");
 
-        jLabel2.setText("Password:");
+        jlPassword.setText("Password:");
 
-        jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
+        tfPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jPasswordField1ActionPerformed(evt);
+                tfPasswordActionPerformed(evt);
             }
         });
 
@@ -89,19 +97,19 @@ public class jpLogin extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(113, 113, 113)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jButton1)
+                    .addComponent(jbLogin)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addComponent(jlUsername)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(tfUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
+                        .addComponent(jlPassword)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(tfPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(117, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton2)
+                .addComponent(jbSignUp)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -111,21 +119,27 @@ public class jpLogin extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))
+                            .addComponent(tfUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jlUsername))
                         .addGap(26, 26, 26))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel2)
-                        .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jlPassword)
+                        .addComponent(tfPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(16, 16, 16)
-                .addComponent(jButton1)
+                .addComponent(jbLogin)
                 .addGap(76, 76, 76)
-                .addComponent(jButton2)
+                .addComponent(jbSignUp)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    /**
+     * Function to react to the sign up button being pressed. 
+     * Opens the sign up panel
+     * @param evt 
+     */
+    private void jbSignUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSignUpActionPerformed
+        
         jpSignUp signUp = new jpSignUp();
         signUp.setVisible(true);
         JDialog jdSignUp = new JDialog();
@@ -135,33 +149,52 @@ public class jpLogin extends javax.swing.JPanel {
         jdSignUp.setSize(400, 300);
         jdSignUp.setModal(true);
         jdSignUp.setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
+        
+    }//GEN-LAST:event_jbSignUpActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try {
-            username = jTextField1.getText();
-            password = jPasswordField1.getText();
+    
+    /**
+     * Function to react to the log in button being pressed.
+     * @param evt 
+     */
+    private void jbLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLoginActionPerformed
+        
+        try 
+        {
+            //Get the text from both text fields
+            username = tfUsername.getText();
+            password = tfPassword.getText();
             
+            //Get a result set of the player table
             ps = con.prepareStatement("SELECT username FROM player;");
             rs = ps.executeQuery();
             rsMD = rs.getMetaData();
             column = rsMD.getColumnCount();
-            int y = 0;
-            while(rs.next() == true){
-                for(int n = 1; n <= column; n++){
+            
+            
+            int y = 0;      //TODO Can we get a more meaningful name for the loop control?
+            //TODO Make comment for this loop
+            while(rs.next() == true)
+            {
+                for(int n = 1; n <= column; n++)
+                {
                     S = rs.getString(n);
                     if(username.equals(S))
                         y++;
                 }
             }
-            if(y == 1){
+            
+            if(y == 1)
+            {
                 ps = con.prepareStatement("SELECT password FROM player WHERE username = '" + username + "';");
                 rs = ps.executeQuery();
                 S = rs.getString(1);
-                if(password.equals(S)){
+                if(password.equals(S))
+                {
                     y++;
                 }
-                else{
+                else
+                {
                     JOptionPane.showMessageDialog(frame, "The username and password do not match. Please try logging in again.", "Error", JOptionPane.ERROR_MESSAGE);
                 }   
             }
@@ -178,19 +211,19 @@ public class jpLogin extends javax.swing.JPanel {
         } catch (SQLException ex) {
             Logger.getLogger(jpLogin.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jbLoginActionPerformed
 
-    private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
+    private void tfPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfPasswordActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jPasswordField1ActionPerformed
+    }//GEN-LAST:event_tfPasswordActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton jbLogin;
+    private javax.swing.JButton jbSignUp;
+    private javax.swing.JLabel jlPassword;
+    private javax.swing.JLabel jlUsername;
+    private javax.swing.JPasswordField tfPassword;
+    private javax.swing.JTextField tfUsername;
     // End of variables declaration//GEN-END:variables
 }
