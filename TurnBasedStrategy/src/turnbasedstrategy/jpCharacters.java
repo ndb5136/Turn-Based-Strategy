@@ -336,7 +336,8 @@ public class jpCharacters extends javax.swing.JPanel {
                             x++;
                     }
                 }
-                if(x == 0){    
+                if(x == 0){  
+                    con.close();
                     this.getTopLevelAncestor().setVisible(false);
                 }
                 else{

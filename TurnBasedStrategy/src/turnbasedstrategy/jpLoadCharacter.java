@@ -44,7 +44,6 @@ public class jpLoadCharacter extends javax.swing.JPanel {
                     jComboBox1.addItem(S);
                 }
             }
-            
         } catch (SQLException ex) {
             Logger.getLogger(jpLoadCharacter.class.getName()).log(Level.SEVERE, null, ex);
         }

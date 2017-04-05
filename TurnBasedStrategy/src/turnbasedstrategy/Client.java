@@ -3,7 +3,10 @@ package turnbasedstrategy;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.net.InetAddress;
 import java.net.Socket;
+import java.sql.SQLException;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -29,7 +32,7 @@ public class Client implements Runnable
     
     //Int to store the port number
     private static int portNumber = 2222;
-    
+        
     //String to hold the host name
     private static String host = "localhost";
     
@@ -46,7 +49,7 @@ public class Client implements Runnable
      */
     public static void communicate()
     {
-        Player person = new Player("Paul","Archsassin");
+        Player person = new Player("Paul", "Archsassin");
         
         try 
         {

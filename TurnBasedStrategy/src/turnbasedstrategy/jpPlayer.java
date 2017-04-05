@@ -21,7 +21,7 @@ public class jpPlayer extends javax.swing.JPanel {
     Connection con = connect.connectToDB();
     
     static int playerID;
-    String username;
+    static String username;
     String characterName;
     int level;
     int exp;
@@ -38,16 +38,6 @@ public class jpPlayer extends javax.swing.JPanel {
         
         username = jpLogin.username;
         jTextPane1.setText(username);
-        
-        try {
-            ps = con.prepareStatement("SELECT ID FROM player WHERE username = '" + username + "';");
-            rs = ps.executeQuery();
-            S = rs.getString(1);
-            playerID = Integer.parseInt(S);
-                    
-        } catch (SQLException ex) {
-            Logger.getLogger(jpPlayer.class.getName()).log(Level.SEVERE, null, ex);
-        }
         
         if(jpCharacters.characterName != null){
             try {
@@ -187,6 +177,11 @@ public class jpPlayer extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
+            ps = con.prepareStatement("SELECT ID FROM player WHERE username = '" + username + "';");
+            rs = ps.executeQuery();
+            S = rs.getString(1);
+            playerID = Integer.parseInt(S);
+                    
             ps.close();
         } catch (SQLException ex) {
             Logger.getLogger(jpPlayer.class.getName()).log(Level.SEVERE, null, ex);
@@ -219,6 +214,7 @@ public class jpPlayer extends javax.swing.JPanel {
             }                
             S = Integer.toString(level);
             jTextPane3.setText(S);
+            con.close();
         } catch (SQLException ex) {
             Logger.getLogger(jpPlayer.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -228,7 +224,9 @@ public class jpPlayer extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        Server server = new Server();
+        
+        Client client = new Client();
     }//GEN-LAST:event_jButton3ActionPerformed
 
 

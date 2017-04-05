@@ -37,7 +37,7 @@ public class Server
     public Server()
     {
         System.out.println("Usage: java MultiThreadChatServerSync <portNumber>\n"
-                + "Now using port number=" + portNumber);
+                + "Now using port number = " + portNumber);
         
         //Declare the server socket
         try
@@ -64,13 +64,18 @@ public class Server
                 int i;
                 for(i = clientnumber; i < maxClientCount; i++)
                 {
-                    threads[i]=null;
+                    threads[i] = null;
                     if(threads[i] == null)
                     {
                         (threads[i] = new clientThread(clientSocket, threads)).start();
                         clientnumber++;
                         break;
                     }
+                }
+                    
+                if(i < maxClientCount){
+                    jfSearchForPlayer search = new jfSearchForPlayer();
+                    search.setVisible(true);
                 }
                 
                 //if the room has 2 players, let the client know the room is full
