@@ -33,7 +33,7 @@ public class jpCharacters extends javax.swing.JPanel {
     double mana;
     double health;
     int exp;
-    static int level;
+    int level;
     
     PreparedStatement ps;
     ResultSet rs;
@@ -52,14 +52,6 @@ public class jpCharacters extends javax.swing.JPanel {
             loadCharacter();
         }
     }  
-    
-    public void finalize(){
-        try {
-            con.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(jpCharacters.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -142,18 +134,25 @@ public class jpCharacters extends javax.swing.JPanel {
             }
         });
 
+        jTextPane2.setEditable(false);
         jScrollPane2.setViewportView(jTextPane2);
 
+        jTextPane3.setEditable(false);
         jScrollPane3.setViewportView(jTextPane3);
 
+        jTextPane4.setEditable(false);
         jScrollPane4.setViewportView(jTextPane4);
 
+        jTextPane5.setEditable(false);
         jScrollPane5.setViewportView(jTextPane5);
 
+        jTextPane6.setEditable(false);
         jScrollPane6.setViewportView(jTextPane6);
 
+        jTextPane7.setEditable(false);
         jScrollPane7.setViewportView(jTextPane7);
 
+        jTextPane8.setEditable(false);
         jScrollPane8.setViewportView(jTextPane8);
 
         jTextField1.setText("Character Name");
@@ -163,6 +162,7 @@ public class jpCharacters extends javax.swing.JPanel {
             }
         });
 
+        jTextPane1.setEditable(false);
         jScrollPane1.setViewportView(jTextPane1);
 
         jLabel8.setText("Level");
