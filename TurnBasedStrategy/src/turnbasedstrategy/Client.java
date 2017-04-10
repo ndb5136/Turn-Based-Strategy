@@ -3,10 +3,7 @@ package turnbasedstrategy;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.net.InetAddress;
 import java.net.Socket;
-import java.sql.SQLException;
-import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 

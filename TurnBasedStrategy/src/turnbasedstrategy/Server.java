@@ -72,11 +72,6 @@ public class Server
                         break;
                     }
                 }
-                    
-                if(i < maxClientCount){
-                    jfSearchForPlayer search = new jfSearchForPlayer();
-                    search.setVisible(true);
-                }
                 
                 //if the room has 2 players, let the client know the room is full
                 if(i >= maxClientCount)
