@@ -1,41 +1,77 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package turnbasedstrategy;
 
 import java.io.Serializable;
 
 /**
- *
- * @author Nick
+ * Action that can be performed in TBS Game
+ * @author Nick Beliveau
+ * 
+ * Created      4/10/17
  */
 public class Action implements Serializable
 {
-    private String body;
+    private String type;
+    private String statEffected;
+    private double amount;
     
-    public Action(String body)
+    public Action(String s)
     {
-        this.body = body;
+        type = s;
+        statEffected = "";
+        amount = 0;
+    }
+    
+    public Action(String t, String stat, double a)
+    {
+        type = t;
+        statEffected = stat;
+        amount = a;
     }
     
     public String toString()
     {
-        return getBody();
+        return "Type: " + getType() + "\nStat: " + getStatEffected() + "\nAmount: " + getAmount();
     }
 
     /**
-     * @return the body
+     * @return the type (Attack, Ability, Item)
      */
-    public String getBody() {
-        return body;
+    public String getType() {
+        return type;
     }
 
     /**
      * @param body the body to set
      */
-    public void setBody(String body) {
-        this.body = body;
+    public void setType(String t) {
+        type = t;
+    }
+
+    /**
+     * @return the statEffected
+     */
+    public String getStatEffected() {
+        return statEffected;
+    }
+
+    /**
+     * @param statEffected the statEffected to set
+     */
+    public void setStatEffected(String statEffected) {
+        this.statEffected = statEffected;
+    }
+
+    /**
+     * @return the amount
+     */
+    public double getAmount() {
+        return amount;
+    }
+
+    /**
+     * @param amount the amount to set
+     */
+    public void setAmount(double amount) {
+        this.amount = amount;
     }
 }
