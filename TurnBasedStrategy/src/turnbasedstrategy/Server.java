@@ -56,11 +56,12 @@ public class Server
         }
         while (true)
         {
-            System.out.println("Server Loop");
             try 
             {
                 //Connect to the client socket
+                System.out.println("Server Loop 1");
                 clientSocket = serverSocket.accept();
+                System.out.println("Server Loop 2");
                 //Get the threads
                 int i;
                 for(i = clientnumber; i < maxClientCount; i++)
@@ -68,13 +69,12 @@ public class Server
                     threads[i] = null;
                     if(threads[i] == null)
                     {
-                        System.out.println("client " +i);
                         (threads[i] = new clientThread(clientSocket, threads)).start();
                         clientnumber++;
+                        System.out.println("client " +clientnumber);
                         break;
                     }
                 }
-                
                 //if the room has 2 players, let the client know the room is full
                 if(i >= maxClientCount)
                 {
@@ -136,9 +136,9 @@ public class Server
                 output.writeObject(action);
                 Action action2 = new Action("Stab", "Physical", 9000);
                 output.writeObject(action2);
-                Action action3 = new Action("end");
-                output.writeObject(action3); 
-                clientnumber--;
+//                Action action3 = new Action("end");
+//                output.writeObject(action3); 
+//                clientnumber--;
                 try 
                 {
                     //Read in the player from the client

@@ -253,7 +253,7 @@ public class jpPlayer extends javax.swing.JPanel {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         Server server = new Server();
         
-        Client client = new Client();
+        Client client = new Client(username,characterName);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -287,7 +287,7 @@ public class jpPlayer extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        Client client = new Client();
+        Client client = new Client(username,characterName);
     }//GEN-LAST:event_jButton6ActionPerformed
 
 

@@ -32,13 +32,21 @@ public class Client implements Runnable
         
     //String to hold the host name
     private static String host = "localhost";
+    private static String username;
+    private static String characterName;
     
     /**
      * Constructor for the Client class
      */
     public Client()
     {
-        
+        username="Paul";
+        characterName="Archsassin";
+    }
+    public Client(String n, String c)
+    {
+        username=n;
+        characterName=c;
     }
     
     /**
@@ -46,7 +54,7 @@ public class Client implements Runnable
      */
     public static void communicate()
     {
-        Player person = new Player("Paul", "Archsassin");
+        Player person = new Player(username, characterName);
         
         try 
         {
