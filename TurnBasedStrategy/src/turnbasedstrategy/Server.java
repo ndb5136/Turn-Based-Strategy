@@ -56,6 +56,7 @@ public class Server
         }
         while (true)
         {
+            System.out.println("Server Loop");
             try 
             {
                 //Connect to the client socket
@@ -67,6 +68,7 @@ public class Server
                     threads[i] = null;
                     if(threads[i] == null)
                     {
+                        System.out.println("client " +i);
                         (threads[i] = new clientThread(clientSocket, threads)).start();
                         clientnumber++;
                         break;
@@ -132,8 +134,10 @@ public class Server
                     
                 //Write the waiting action to the socket
                 output.writeObject(action);
-                Action action2 = new Action("end");
-                output.writeObject(action2); 
+                Action action2 = new Action("Stab", "Physical", 9000);
+                output.writeObject(action2);
+                Action action3 = new Action("end");
+                output.writeObject(action3); 
                 clientnumber--;
                 try 
                 {

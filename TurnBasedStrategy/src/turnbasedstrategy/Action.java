@@ -30,7 +30,11 @@ public class Action implements Serializable
     
     public String toString()
     {
-        return "Type: " + getType() + "\nStat: " + getStatEffected() + "\nAmount: " + getAmount();
+        if (type.equals("end")){
+            return "end";
+        }
+        else
+            return "Type: " + getType() + "\nStat: " + getStatEffected() + "\nAmount: " + getAmount();
     }
 
     /**
