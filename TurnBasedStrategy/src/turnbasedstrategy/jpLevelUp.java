@@ -35,7 +35,16 @@ public class jpLevelUp extends javax.swing.JPanel {
     static int exp;
     static int level;
     static int levelUpPoints;
+    int pointsLeft;
     int LUP;
+    
+    int PA = 0;
+    int SA = 0;
+    int PD = 0;
+    int SD = 0;
+    int SP = 0;
+    int M = 0;
+    int H = 0;
     
     
     PreparedStatement ps;
@@ -51,6 +60,7 @@ public class jpLevelUp extends javax.swing.JPanel {
     public jpLevelUp() {
         initComponents();
         LUP = levelUpPoints;
+        pointsLeft = levelUpPoints;
         characterName = jpCharacters.characterName;
         jButton5.setEnabled(false);
         jButton6.setEnabled(false);
@@ -400,6 +410,8 @@ public class jpLevelUp extends javax.swing.JPanel {
         health -= 10;
         S = Double.toString(health);
         jTextPane2.setText(S);
+        pointsLeft += 1;
+        H -= 1;
         
         if((LUP+=1) == levelUpPoints){
             jButton5.setEnabled(false);
@@ -409,6 +421,17 @@ public class jpLevelUp extends javax.swing.JPanel {
             jButton9.setEnabled(false);
             jButton10.setEnabled(false);
             jButton11.setEnabled(false);
+            jButton12.setEnabled(true);
+            jButton13.setEnabled(true);
+            jButton14.setEnabled(true);
+            jButton15.setEnabled(true);
+            jButton16.setEnabled(true);
+            jButton17.setEnabled(true);
+            jButton18.setEnabled(true);
+        }
+        else if(LUP == pointsLeft){
+            if(H == 0)
+                jButton5.setEnabled(false);
             jButton12.setEnabled(true);
             jButton13.setEnabled(true);
             jButton14.setEnabled(true);
@@ -423,6 +446,8 @@ public class jpLevelUp extends javax.swing.JPanel {
         mana -= 10;
         S = Double.toString(mana);
         jTextPane3.setText(S);
+        pointsLeft += 1;
+        M -= 1;
         
         if((LUP+=1) == levelUpPoints){
             jButton5.setEnabled(false);
@@ -432,6 +457,17 @@ public class jpLevelUp extends javax.swing.JPanel {
             jButton9.setEnabled(false);
             jButton10.setEnabled(false);
             jButton11.setEnabled(false);
+            jButton12.setEnabled(true);
+            jButton13.setEnabled(true);
+            jButton14.setEnabled(true);
+            jButton15.setEnabled(true);
+            jButton16.setEnabled(true);
+            jButton17.setEnabled(true);
+            jButton18.setEnabled(true);
+        }
+        else if(LUP == pointsLeft){
+            if(M == 0)
+                jButton6.setEnabled(false);
             jButton12.setEnabled(true);
             jButton13.setEnabled(true);
             jButton14.setEnabled(true);
@@ -446,6 +482,8 @@ public class jpLevelUp extends javax.swing.JPanel {
         physicalAttack--;
         S = Double.toString(physicalAttack);
         jTextPane4.setText(S);
+        pointsLeft += 1;
+        PA -= 1;
         
         if((LUP+=1) == levelUpPoints){
             jButton5.setEnabled(false);
@@ -455,6 +493,17 @@ public class jpLevelUp extends javax.swing.JPanel {
             jButton9.setEnabled(false);
             jButton10.setEnabled(false);
             jButton11.setEnabled(false);
+            jButton12.setEnabled(true);
+            jButton13.setEnabled(true);
+            jButton14.setEnabled(true);
+            jButton15.setEnabled(true);
+            jButton16.setEnabled(true);
+            jButton17.setEnabled(true);
+            jButton18.setEnabled(true);
+        }
+        else if(LUP == pointsLeft){
+            if(PA == 0)
+                jButton7.setEnabled(false);
             jButton12.setEnabled(true);
             jButton13.setEnabled(true);
             jButton14.setEnabled(true);
@@ -469,6 +518,8 @@ public class jpLevelUp extends javax.swing.JPanel {
         specialAttack--;
         S = Double.toString(specialAttack);
         jTextPane5.setText(S);
+        pointsLeft += 1;
+        SA -= 1;
         
         if((LUP+=1) == levelUpPoints){
             jButton5.setEnabled(false);
@@ -478,6 +529,17 @@ public class jpLevelUp extends javax.swing.JPanel {
             jButton9.setEnabled(false);
             jButton10.setEnabled(false);
             jButton11.setEnabled(false);
+            jButton12.setEnabled(true);
+            jButton13.setEnabled(true);
+            jButton14.setEnabled(true);
+            jButton15.setEnabled(true);
+            jButton16.setEnabled(true);
+            jButton17.setEnabled(true);
+            jButton18.setEnabled(true);
+        }
+        else if(LUP == pointsLeft){
+            if(SA == 0)
+                jButton8.setEnabled(false);
             jButton12.setEnabled(true);
             jButton13.setEnabled(true);
             jButton14.setEnabled(true);
@@ -492,6 +554,8 @@ public class jpLevelUp extends javax.swing.JPanel {
         physicalDefense--;
         S = Double.toString(physicalDefense);
         jTextPane6.setText(S);
+        pointsLeft += 1;
+        PD -= 1;
         
         if((LUP+=1) == levelUpPoints){
             jButton5.setEnabled(false);
@@ -501,6 +565,17 @@ public class jpLevelUp extends javax.swing.JPanel {
             jButton9.setEnabled(false);
             jButton10.setEnabled(false);
             jButton11.setEnabled(false);
+            jButton12.setEnabled(true);
+            jButton13.setEnabled(true);
+            jButton14.setEnabled(true);
+            jButton15.setEnabled(true);
+            jButton16.setEnabled(true);
+            jButton17.setEnabled(true);
+            jButton18.setEnabled(true);
+        }
+        else if(LUP == pointsLeft){
+            if(PD == 0)
+                jButton9.setEnabled(false);
             jButton12.setEnabled(true);
             jButton13.setEnabled(true);
             jButton14.setEnabled(true);
@@ -515,6 +590,8 @@ public class jpLevelUp extends javax.swing.JPanel {
         specialDefense--;
         S = Double.toString(specialDefense);
         jTextPane7.setText(S);
+        pointsLeft += 1;
+        SD -= 1;
         
         if((LUP+=1) == levelUpPoints){
             jButton5.setEnabled(false);
@@ -524,6 +601,17 @@ public class jpLevelUp extends javax.swing.JPanel {
             jButton9.setEnabled(false);
             jButton10.setEnabled(false);
             jButton11.setEnabled(false);
+            jButton12.setEnabled(true);
+            jButton13.setEnabled(true);
+            jButton14.setEnabled(true);
+            jButton15.setEnabled(true);
+            jButton16.setEnabled(true);
+            jButton17.setEnabled(true);
+            jButton18.setEnabled(true);
+        }
+        else if(LUP == pointsLeft){
+            if(SD == 0)
+                jButton10.setEnabled(false);
             jButton12.setEnabled(true);
             jButton13.setEnabled(true);
             jButton14.setEnabled(true);
@@ -538,6 +626,8 @@ public class jpLevelUp extends javax.swing.JPanel {
         speed--;
         S = Double.toString(speed);
         jTextPane8.setText(S);
+        pointsLeft += 1;
+        SP -= 1;
         
         if((LUP+=1) == levelUpPoints){
             jButton5.setEnabled(false);
@@ -555,12 +645,25 @@ public class jpLevelUp extends javax.swing.JPanel {
             jButton17.setEnabled(true);
             jButton18.setEnabled(true);
         }
+        else if(LUP == pointsLeft){
+            if(SP == 0)
+                jButton11.setEnabled(false);
+            jButton12.setEnabled(true);
+            jButton13.setEnabled(true);
+            jButton14.setEnabled(true);
+            jButton15.setEnabled(true);
+            jButton16.setEnabled(true);
+            jButton17.setEnabled(true);
+            jButton18.setEnabled(true);
+        }
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
         health += 10;
         S = Double.toString(health);
         jTextPane2.setText(S);
+        pointsLeft -= 1;
+        H += 1;
         
         jButton5.setEnabled(true);
         if((LUP-=1) == 0){
@@ -578,6 +681,8 @@ public class jpLevelUp extends javax.swing.JPanel {
         mana += 10;
         S = Double.toString(mana);
         jTextPane3.setText(S);
+        pointsLeft -= 1;
+        M += 1;
         
         jButton6.setEnabled(true);
         if((LUP-=1) == 0){
@@ -595,6 +700,8 @@ public class jpLevelUp extends javax.swing.JPanel {
         physicalAttack++;
         S = Double.toString(physicalAttack);
         jTextPane4.setText(S);
+        pointsLeft -= 1;
+        PA += 1;
         
         jButton7.setEnabled(true);
         if((LUP-=1) == 0){
@@ -612,6 +719,8 @@ public class jpLevelUp extends javax.swing.JPanel {
         specialAttack++;
         S = Double.toString(specialAttack);
         jTextPane5.setText(S);
+        pointsLeft -= 1;
+        SA += 1;
         
         jButton8.setEnabled(true);
         if((LUP-=1) == 0){
@@ -629,6 +738,8 @@ public class jpLevelUp extends javax.swing.JPanel {
         physicalDefense++;
         S = Double.toString(physicalDefense);
         jTextPane6.setText(S);
+        pointsLeft -= 1;
+        PD += 1;
         
         jButton9.setEnabled(true);
         if((LUP-=1) == 0){
@@ -646,6 +757,8 @@ public class jpLevelUp extends javax.swing.JPanel {
         specialDefense++;
         S = Double.toString(specialDefense);
         jTextPane7.setText(S);
+        pointsLeft -= 1;
+        SD += 1;
         
         jButton10.setEnabled(true);
         if((LUP-=1) == 0){
@@ -663,6 +776,8 @@ public class jpLevelUp extends javax.swing.JPanel {
         speed++;
         S = Double.toString(speed);
         jTextPane8.setText(S);
+        pointsLeft -= 1;
+        SP += 1;
         
         jButton11.setEnabled(true);
         if((LUP-=1) == 0){
@@ -731,6 +846,8 @@ public class jpLevelUp extends javax.swing.JPanel {
             S = Integer.toString(level);
             jTextPane1.setText(S);
             
+            ps.close();
+            rs.close();
         } catch (SQLException ex) {
             Logger.getLogger(jpLevelUp.class.getName()).log(Level.SEVERE, null, ex);
         }

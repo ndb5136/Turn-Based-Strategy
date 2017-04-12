@@ -51,7 +51,7 @@ public class jpPlayer extends javax.swing.JPanel {
                 
                 int z = 100;
                 level = 1;
-                while(exp > z){
+                while(exp >= z){
                     level++;
                     z = z + (level * 100);
                 }                
@@ -236,8 +236,9 @@ public class jpPlayer extends javax.swing.JPanel {
             S = rs.getString(1);
             exp = Integer.parseInt(S);
                 
+            level = 1;
             int z = 100;
-            while(exp > z){
+            while(exp >= z){
                 level++;
                 z = z + (level * 100);
             }                
@@ -261,7 +262,7 @@ public class jpPlayer extends javax.swing.JPanel {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         exp += 100;                     //Why does clicking the button give the character 100 exp?
-        int levelNow = level;
+        int levelNow = 1;
         int z = 100;
         while(exp >= z){
             levelNow++;
