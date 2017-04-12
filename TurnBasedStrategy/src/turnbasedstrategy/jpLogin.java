@@ -214,7 +214,58 @@ public class jpLogin extends javax.swing.JPanel {
     }//GEN-LAST:event_jbLoginActionPerformed
 
     private void tfPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfPasswordActionPerformed
-        // TODO add your handling code here:
+        try 
+        {
+            //Get the text from both text fields
+            username = tfUsername.getText();
+            password = tfPassword.getText();
+            
+            //Get a result set of the player table
+            ps = con.prepareStatement("SELECT username FROM player;");
+            rs = ps.executeQuery();
+            rsMD = rs.getMetaData();
+            column = rsMD.getColumnCount();
+            
+            
+            int y = 0;      //TODO Can we get a more meaningful name for the loop control?
+            //TODO Make comment for this loop
+            while(rs.next() == true)
+            {
+                for(int n = 1; n <= column; n++)
+                {
+                    S = rs.getString(n);
+                    if(username.equals(S))
+                        y++;
+                }
+            }
+            
+            if(y == 1)
+            {
+                ps = con.prepareStatement("SELECT password FROM player WHERE username = '" + username + "';");
+                rs = ps.executeQuery();
+                S = rs.getString(1);
+                if(password.equals(S))
+                {
+                    y++;
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(frame, "The username and password do not match. Please try logging in again.", "Error", JOptionPane.ERROR_MESSAGE);
+                }   
+            }
+            else{
+                JOptionPane.showMessageDialog(frame, "Please sign up for an account.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+            if(y == 2){             
+                this.getTopLevelAncestor().setVisible(false);
+                ps.close();
+                con.close();
+                jfPlayer player = new jfPlayer();
+                player.setVisible(true);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(jpLogin.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_tfPasswordActionPerformed
 
 

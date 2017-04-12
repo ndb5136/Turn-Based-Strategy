@@ -64,6 +64,7 @@ public class jpPlayer extends javax.swing.JPanel {
         else{
             jButton2.setEnabled(false);
             jButton3.setEnabled(false);
+            jButton4.setEnabled(false);
             jButton6.setEnabled(false);
         }
         
@@ -110,6 +111,7 @@ public class jpPlayer extends javax.swing.JPanel {
         });
 
         jButton3.setText("Host PvP Game");
+        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -247,6 +249,7 @@ public class jpPlayer extends javax.swing.JPanel {
         
         jButton2.setEnabled(true);
         jButton3.setEnabled(true);
+        jButton4.setEnabled(true);
         jButton6.setEnabled(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -257,7 +260,7 @@ public class jpPlayer extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        exp += 100;
+        exp += 100;                     //Why does clicking the button give the character 100 exp?
         int levelNow = level;
         int z = 100;
         while(exp >= z){

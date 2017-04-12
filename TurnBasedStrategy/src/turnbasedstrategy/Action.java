@@ -30,9 +30,8 @@ public class Action implements Serializable
     
     public String toString()
     {
-        if (type.equals("end")){
+        if (type.equals("end"))
             return "end";
-        }
         else if (type.equals("Waiting for Player"))
             return "Server is waiting";
         else if (type.equals("Server has 2 players already"))

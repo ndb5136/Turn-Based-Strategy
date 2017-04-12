@@ -173,7 +173,44 @@ public class jpSignUp extends javax.swing.JPanel {
     }//GEN-LAST:event_jPasswordField1ActionPerformed
 
     private void jPasswordField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField2ActionPerformed
-        // TODO add your handling code here:
+        try {
+            username = jTextField1.getText();
+            password = jPasswordField1.getText();
+            confirmPassword = jPasswordField2.getText();
+            
+            ps = con.prepareStatement("SELECT username FROM player;");
+            rs = ps.executeQuery();
+            rsMD = rs.getMetaData();
+            column = rsMD.getColumnCount();
+            int y = 0;
+            while(rs.next() == true){
+                for(int n = 1; n <= column; n++){
+                    S = rs.getString(n);
+                    if(username.equals(S)){
+                        y++;
+                        JOptionPane.showMessageDialog(frame, "That username is already in use. Please choose a new username.", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                    else{
+                        
+                    }    
+                }
+            }
+            if(y == 0){
+                if(password.equals(confirmPassword)){
+                    ps = con.prepareStatement("INSERT INTO player (username, password) VALUES ('" + username + "', '" + password + "');");
+                    ps.executeUpdate();
+                    ps.close();
+                    con.close();
+                    this.getTopLevelAncestor().setVisible(false);
+                }
+                else{
+                    JOptionPane.showMessageDialog(frame, "The passwords do not match.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(jpSignUp.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jPasswordField2ActionPerformed
 
 

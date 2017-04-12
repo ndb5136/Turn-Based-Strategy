@@ -533,6 +533,7 @@ public class jpCharacters extends javax.swing.JPanel {
                 + jpPlayer.playerID + ", '" + characterName + "', " + health + ", " + mana + ", " + physicalAttack + ", " + specialAttack + ", " + physicalDefense + ", " + specialDefense + ", " + speed + ", " + exp + ");");
                 ps.executeUpdate();
                 ps.close();
+                JOptionPane.showMessageDialog(frame, "Player Saved","Ready to Play", JOptionPane.INFORMATION_MESSAGE);
             }
             else if (x > 0){
                 JOptionPane.showMessageDialog(frame, "That name has already been taken. Please choose a new name.", "Error", JOptionPane.ERROR_MESSAGE);    

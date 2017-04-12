@@ -54,14 +54,13 @@ public class Server
         } catch (IOException ex) {
             Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
         }
-        while (true)
-        {
+        
+//        while (true)
+//        {
             try 
             {
                 //Connect to the client socket
-                System.out.println("Server Loop 1");
                 clientSocket = serverSocket.accept();
-                System.out.println("Server Loop 2");
                 //Get the threads
                 int i;
                 for(i = clientnumber; i < maxClientCount; i++)
@@ -87,7 +86,7 @@ public class Server
             {
                 Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
+//        }
         
     }
 
