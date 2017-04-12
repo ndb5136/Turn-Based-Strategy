@@ -477,7 +477,7 @@ public class jpCharacters extends javax.swing.JPanel {
             int n = exp;
             int z = 100;
             level = 1;
-            while(exp > z){
+            while(exp >= z){
                 level++;
                 z = z + (level * 100);
             }

@@ -50,6 +50,7 @@ public class jpLevelUp extends javax.swing.JPanel {
      */
     public jpLevelUp() {
         initComponents();
+        LUP = levelUpPoints;
         characterName = jpCharacters.characterName;
         jButton5.setEnabled(false);
         jButton6.setEnabled(false);
@@ -214,16 +215,46 @@ public class jpLevelUp extends javax.swing.JPanel {
         });
 
         jButton13.setText("+");
+        jButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton13ActionPerformed(evt);
+            }
+        });
 
         jButton14.setText("+");
+        jButton14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton14ActionPerformed(evt);
+            }
+        });
 
         jButton15.setText("+");
+        jButton15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton15ActionPerformed(evt);
+            }
+        });
 
         jButton16.setText("+");
+        jButton16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton16ActionPerformed(evt);
+            }
+        });
 
         jButton17.setText("+");
+        jButton17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton17ActionPerformed(evt);
+            }
+        });
 
         jButton18.setText("+");
+        jButton18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton18ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -370,8 +401,7 @@ public class jpLevelUp extends javax.swing.JPanel {
         S = Double.toString(health);
         jTextPane2.setText(S);
         
-        LUP++;
-        if(LUP == levelUpPoints){
+        if((LUP+=1) == levelUpPoints){
             jButton5.setEnabled(false);
             jButton6.setEnabled(false);
             jButton7.setEnabled(false);
@@ -379,16 +409,22 @@ public class jpLevelUp extends javax.swing.JPanel {
             jButton9.setEnabled(false);
             jButton10.setEnabled(false);
             jButton11.setEnabled(false);
+            jButton12.setEnabled(true);
+            jButton13.setEnabled(true);
+            jButton14.setEnabled(true);
+            jButton15.setEnabled(true);
+            jButton16.setEnabled(true);
+            jButton17.setEnabled(true);
+            jButton18.setEnabled(true);
         }
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         mana -= 10;
         S = Double.toString(mana);
-        jTextPane2.setText(S);
+        jTextPane3.setText(S);
         
-        LUP++;
-        if(LUP == levelUpPoints){
+        if((LUP+=1) == levelUpPoints){
             jButton5.setEnabled(false);
             jButton6.setEnabled(false);
             jButton7.setEnabled(false);
@@ -396,16 +432,22 @@ public class jpLevelUp extends javax.swing.JPanel {
             jButton9.setEnabled(false);
             jButton10.setEnabled(false);
             jButton11.setEnabled(false);
+            jButton12.setEnabled(true);
+            jButton13.setEnabled(true);
+            jButton14.setEnabled(true);
+            jButton15.setEnabled(true);
+            jButton16.setEnabled(true);
+            jButton17.setEnabled(true);
+            jButton18.setEnabled(true);
         }
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         physicalAttack--;
         S = Double.toString(physicalAttack);
-        jTextPane2.setText(S);
+        jTextPane4.setText(S);
         
-        LUP++;
-        if(LUP == levelUpPoints){
+        if((LUP+=1) == levelUpPoints){
             jButton5.setEnabled(false);
             jButton6.setEnabled(false);
             jButton7.setEnabled(false);
@@ -413,16 +455,22 @@ public class jpLevelUp extends javax.swing.JPanel {
             jButton9.setEnabled(false);
             jButton10.setEnabled(false);
             jButton11.setEnabled(false);
+            jButton12.setEnabled(true);
+            jButton13.setEnabled(true);
+            jButton14.setEnabled(true);
+            jButton15.setEnabled(true);
+            jButton16.setEnabled(true);
+            jButton17.setEnabled(true);
+            jButton18.setEnabled(true);
         }
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         specialAttack--;
         S = Double.toString(specialAttack);
-        jTextPane2.setText(S);
+        jTextPane5.setText(S);
         
-        LUP++;
-        if(LUP == levelUpPoints){
+        if((LUP+=1) == levelUpPoints){
             jButton5.setEnabled(false);
             jButton6.setEnabled(false);
             jButton7.setEnabled(false);
@@ -430,16 +478,22 @@ public class jpLevelUp extends javax.swing.JPanel {
             jButton9.setEnabled(false);
             jButton10.setEnabled(false);
             jButton11.setEnabled(false);
+            jButton12.setEnabled(true);
+            jButton13.setEnabled(true);
+            jButton14.setEnabled(true);
+            jButton15.setEnabled(true);
+            jButton16.setEnabled(true);
+            jButton17.setEnabled(true);
+            jButton18.setEnabled(true);
         }
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         physicalDefense--;
         S = Double.toString(physicalDefense);
-        jTextPane2.setText(S);
+        jTextPane6.setText(S);
         
-        LUP++;
-        if(LUP == levelUpPoints){
+        if((LUP+=1) == levelUpPoints){
             jButton5.setEnabled(false);
             jButton6.setEnabled(false);
             jButton7.setEnabled(false);
@@ -447,16 +501,22 @@ public class jpLevelUp extends javax.swing.JPanel {
             jButton9.setEnabled(false);
             jButton10.setEnabled(false);
             jButton11.setEnabled(false);
+            jButton12.setEnabled(true);
+            jButton13.setEnabled(true);
+            jButton14.setEnabled(true);
+            jButton15.setEnabled(true);
+            jButton16.setEnabled(true);
+            jButton17.setEnabled(true);
+            jButton18.setEnabled(true);
         }
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         specialDefense--;
         S = Double.toString(specialDefense);
-        jTextPane2.setText(S);
+        jTextPane7.setText(S);
         
-        LUP++;
-        if(LUP == levelUpPoints){
+        if((LUP+=1) == levelUpPoints){
             jButton5.setEnabled(false);
             jButton6.setEnabled(false);
             jButton7.setEnabled(false);
@@ -464,16 +524,22 @@ public class jpLevelUp extends javax.swing.JPanel {
             jButton9.setEnabled(false);
             jButton10.setEnabled(false);
             jButton11.setEnabled(false);
+            jButton12.setEnabled(true);
+            jButton13.setEnabled(true);
+            jButton14.setEnabled(true);
+            jButton15.setEnabled(true);
+            jButton16.setEnabled(true);
+            jButton17.setEnabled(true);
+            jButton18.setEnabled(true);
         }
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         speed--;
         S = Double.toString(speed);
-        jTextPane2.setText(S);
+        jTextPane8.setText(S);
         
-        LUP++;
-        if(LUP == levelUpPoints){
+        if((LUP+=1) == levelUpPoints){
             jButton5.setEnabled(false);
             jButton6.setEnabled(false);
             jButton7.setEnabled(false);
@@ -481,6 +547,13 @@ public class jpLevelUp extends javax.swing.JPanel {
             jButton9.setEnabled(false);
             jButton10.setEnabled(false);
             jButton11.setEnabled(false);
+            jButton12.setEnabled(true);
+            jButton13.setEnabled(true);
+            jButton14.setEnabled(true);
+            jButton15.setEnabled(true);
+            jButton16.setEnabled(true);
+            jButton17.setEnabled(true);
+            jButton18.setEnabled(true);
         }
     }//GEN-LAST:event_jButton11ActionPerformed
 
@@ -489,9 +562,8 @@ public class jpLevelUp extends javax.swing.JPanel {
         S = Double.toString(health);
         jTextPane2.setText(S);
         
-        LUP--;
         jButton5.setEnabled(true);
-        if(LUP == 0){
+        if((LUP-=1) == 0){
             jButton12.setEnabled(false);
             jButton13.setEnabled(false);
             jButton14.setEnabled(false);
@@ -501,6 +573,108 @@ public class jpLevelUp extends javax.swing.JPanel {
             jButton18.setEnabled(false);
         }
     }//GEN-LAST:event_jButton12ActionPerformed
+
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+        mana += 10;
+        S = Double.toString(mana);
+        jTextPane3.setText(S);
+        
+        jButton6.setEnabled(true);
+        if((LUP-=1) == 0){
+            jButton12.setEnabled(false);
+            jButton13.setEnabled(false);
+            jButton14.setEnabled(false);
+            jButton15.setEnabled(false);
+            jButton16.setEnabled(false);
+            jButton17.setEnabled(false);
+            jButton18.setEnabled(false);
+        }
+    }//GEN-LAST:event_jButton13ActionPerformed
+
+    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+        physicalAttack++;
+        S = Double.toString(physicalAttack);
+        jTextPane4.setText(S);
+        
+        jButton7.setEnabled(true);
+        if((LUP-=1) == 0){
+            jButton12.setEnabled(false);
+            jButton13.setEnabled(false);
+            jButton14.setEnabled(false);
+            jButton15.setEnabled(false);
+            jButton16.setEnabled(false);
+            jButton17.setEnabled(false);
+            jButton18.setEnabled(false);
+        }
+    }//GEN-LAST:event_jButton14ActionPerformed
+
+    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
+        specialAttack++;
+        S = Double.toString(specialAttack);
+        jTextPane5.setText(S);
+        
+        jButton8.setEnabled(true);
+        if((LUP-=1) == 0){
+            jButton12.setEnabled(false);
+            jButton13.setEnabled(false);
+            jButton14.setEnabled(false);
+            jButton15.setEnabled(false);
+            jButton16.setEnabled(false);
+            jButton17.setEnabled(false);
+            jButton18.setEnabled(false);
+        }
+    }//GEN-LAST:event_jButton15ActionPerformed
+
+    private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
+        physicalDefense++;
+        S = Double.toString(physicalDefense);
+        jTextPane6.setText(S);
+        
+        jButton9.setEnabled(true);
+        if((LUP-=1) == 0){
+            jButton12.setEnabled(false);
+            jButton13.setEnabled(false);
+            jButton14.setEnabled(false);
+            jButton15.setEnabled(false);
+            jButton16.setEnabled(false);
+            jButton17.setEnabled(false);
+            jButton18.setEnabled(false);
+        }
+    }//GEN-LAST:event_jButton16ActionPerformed
+
+    private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
+        specialDefense++;
+        S = Double.toString(specialDefense);
+        jTextPane7.setText(S);
+        
+        jButton10.setEnabled(true);
+        if((LUP-=1) == 0){
+            jButton12.setEnabled(false);
+            jButton13.setEnabled(false);
+            jButton14.setEnabled(false);
+            jButton15.setEnabled(false);
+            jButton16.setEnabled(false);
+            jButton17.setEnabled(false);
+            jButton18.setEnabled(false);
+        }
+    }//GEN-LAST:event_jButton17ActionPerformed
+
+    private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
+        speed++;
+        S = Double.toString(speed);
+        jTextPane8.setText(S);
+        
+        jButton11.setEnabled(true);
+        if((LUP-=1) == 0){
+            jButton12.setEnabled(false);
+            jButton13.setEnabled(false);
+            jButton14.setEnabled(false);
+            jButton15.setEnabled(false);
+            jButton16.setEnabled(false);
+            jButton17.setEnabled(false);
+            jButton18.setEnabled(false);
+        }
+    }//GEN-LAST:event_jButton18ActionPerformed
 
     // Choose previously saved character and load current stats
     public void loadCharacter(){

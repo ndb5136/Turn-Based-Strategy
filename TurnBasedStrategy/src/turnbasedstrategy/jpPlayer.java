@@ -64,6 +64,7 @@ public class jpPlayer extends javax.swing.JPanel {
         else{
             jButton2.setEnabled(false);
             jButton3.setEnabled(false);
+            jButton6.setEnabled(false);
         }
         
     }
@@ -240,13 +241,13 @@ public class jpPlayer extends javax.swing.JPanel {
             }                
             S = Integer.toString(level);
             jTextPane3.setText(S);
-            con.close();
         } catch (SQLException ex) {
             Logger.getLogger(jpPlayer.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         jButton2.setEnabled(true);
         jButton3.setEnabled(true);
+        jButton6.setEnabled(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -259,7 +260,7 @@ public class jpPlayer extends javax.swing.JPanel {
         exp += 100;
         int levelNow = level;
         int z = 100;
-        while(exp > z){
+        while(exp >= z){
             levelNow++;
             z = z + (levelNow * 100);
         }                
@@ -268,14 +269,14 @@ public class jpPlayer extends javax.swing.JPanel {
         if(levelNow > level){
             jpLevelUp.level = levelNow;
             jpLevelUp.exp = exp;
-            jpLevelUp.levelUpPoints = 2 * levelNow - level;
+            jpLevelUp.levelUpPoints = 2 * (levelNow - level);
             jpLevelUp levelUp = new jpLevelUp();
             levelUp.setVisible(true);
             JDialog jdLevelUp = new JDialog();
             JPanel LevelUp = new jpLevelUp();
             jdLevelUp.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
             jdLevelUp.add(LevelUp);
-            jdLevelUp.setSize(400, 100);
+            jdLevelUp.setSize(500, 400);
             jdLevelUp.setModal(true);
             jdLevelUp.setVisible(true);
             
