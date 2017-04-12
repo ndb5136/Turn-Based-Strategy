@@ -55,8 +55,8 @@ public class Server
             Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-//        while (true)
-//        {
+        while (true)
+        {
             try 
             {
                 //Connect to the client socket
@@ -86,7 +86,7 @@ public class Server
             {
                 Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
             }
-//        }
+        }
         
     }
 
