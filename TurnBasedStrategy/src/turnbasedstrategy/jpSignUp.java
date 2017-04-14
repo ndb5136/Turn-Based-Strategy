@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package turnbasedstrategy;
 
 import java.sql.Connection;
@@ -14,16 +9,18 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JRootPane;
+import javax.swing.SwingUtilities;
 
 /**
- *
+ * Sign up panel
  * @author Cody Zerbe
  */
 public class jpSignUp extends javax.swing.JPanel {
 
+    //Declare variables
     DBConnection connect = new DBConnection();
     Connection con = connect.connectToDB();
-    
     String username;
     String password;
     String confirmPassword;
@@ -33,6 +30,7 @@ public class jpSignUp extends javax.swing.JPanel {
     int column;
     String S;
     JFrame frame;
+    
     /**
      * Creates new form jpSignUp
      */
@@ -49,36 +47,36 @@ public class jpSignUp extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField1 = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        jPasswordField2 = new javax.swing.JPasswordField();
+        jtfUsername = new javax.swing.JTextField();
+        jlUsername = new javax.swing.JLabel();
+        jlPassword = new javax.swing.JLabel();
+        jlConfirmPassword = new javax.swing.JLabel();
+        jbSignUp = new javax.swing.JButton();
+        jtfPassword = new javax.swing.JPasswordField();
+        jtfConfirmPassword = new javax.swing.JPasswordField();
 
-        jLabel1.setText("Username:");
+        jlUsername.setText("Username:");
 
-        jLabel2.setText("Password:");
+        jlPassword.setText("Password:");
 
-        jLabel3.setText("Confirm Password:");
+        jlConfirmPassword.setText("Confirm Password:");
 
-        jButton1.setText("Sign Up");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jbSignUp.setText("Sign Up");
+        jbSignUp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jbSignUpActionPerformed(evt);
             }
         });
 
-        jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
+        jtfPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jPasswordField1ActionPerformed(evt);
+                jtfPasswordActionPerformed(evt);
             }
         });
 
-        jPasswordField2.addActionListener(new java.awt.event.ActionListener() {
+        jtfConfirmPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jPasswordField2ActionPerformed(evt);
+                jtfConfirmPasswordActionPerformed(evt);
             }
         });
 
@@ -90,18 +88,18 @@ public class jpSignUp extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(159, 159, 159)
-                        .addComponent(jButton1))
+                        .addComponent(jbSignUp))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(82, 82, 82)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addComponent(jlConfirmPassword, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jlUsername, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jlPassword, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addGap(33, 33, 33)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jtfUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jtfPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jtfConfirmPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(95, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -111,32 +109,42 @@ public class jpSignUp extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))
+                            .addComponent(jtfUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jlUsername))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel2))
+                        .addComponent(jtfPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jlPassword))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel3)
-                    .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jlConfirmPassword)
+                    .addComponent(jtfConfirmPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(jbSignUp)
                 .addContainerGap(99, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try {
-            username = jTextField1.getText();
-            password = jPasswordField1.getText();
-            confirmPassword = jPasswordField2.getText();
+    /**
+     * Listener for the Sign Up button. 
+     * Gets values currently in the text fields and signs the user up
+     * @param evt 
+     */
+    private void jbSignUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSignUpActionPerformed
+        try 
+        {
+            //Get the text from the text fields
+            username = jtfUsername.getText();
+            password = jtfPassword.getText();
+            confirmPassword = jtfConfirmPassword.getText();
             
+            //Search the database for anyone who already has that username
             ps = con.prepareStatement("SELECT username FROM player;");
             rs = ps.executeQuery();
             rsMD = rs.getMetaData();
             column = rsMD.getColumnCount();
             int y = 0;
+            
+            //Let the user know if the username has already been taken
             while(rs.next() == true){
                 for(int n = 1; n <= column; n++){
                     S = rs.getString(n);
@@ -149,7 +157,11 @@ public class jpSignUp extends javax.swing.JPanel {
                     }    
                 }
             }
+            
+            //If the username does not already exist in the database, insert the row
             if(y == 0){
+                
+                //If the passwords match, enter the row
                 if(password.equals(confirmPassword)){
                     ps = con.prepareStatement("INSERT INTO player (username, password) VALUES ('" + username + "', '" + password + "');");
                     ps.executeUpdate();
@@ -166,17 +178,17 @@ public class jpSignUp extends javax.swing.JPanel {
             Logger.getLogger(jpSignUp.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jbSignUpActionPerformed
 
-    private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
+    private void jtfPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfPasswordActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jPasswordField1ActionPerformed
+    }//GEN-LAST:event_jtfPasswordActionPerformed
 
-    private void jPasswordField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField2ActionPerformed
+    private void jtfConfirmPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfConfirmPasswordActionPerformed
         try {
-            username = jTextField1.getText();
-            password = jPasswordField1.getText();
-            confirmPassword = jPasswordField2.getText();
+            username = jtfUsername.getText();
+            password = jtfPassword.getText();
+            confirmPassword = jtfConfirmPassword.getText();
             
             ps = con.prepareStatement("SELECT username FROM player;");
             rs = ps.executeQuery();
@@ -211,16 +223,16 @@ public class jpSignUp extends javax.swing.JPanel {
         } catch (SQLException ex) {
             Logger.getLogger(jpSignUp.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jPasswordField2ActionPerformed
+    }//GEN-LAST:event_jtfConfirmPasswordActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JPasswordField jPasswordField2;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton jbSignUp;
+    private javax.swing.JLabel jlConfirmPassword;
+    private javax.swing.JLabel jlPassword;
+    private javax.swing.JLabel jlUsername;
+    private javax.swing.JPasswordField jtfConfirmPassword;
+    private javax.swing.JPasswordField jtfPassword;
+    private javax.swing.JTextField jtfUsername;
     // End of variables declaration//GEN-END:variables
 }
