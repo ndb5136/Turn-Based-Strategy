@@ -10,9 +10,9 @@ import java.io.Serializable;
  */
 public class Action implements Serializable
 {
-    private String type;
-    private String statEffected;
-    private double amount;
+    public String type;
+    public String statEffected;
+    public double amount;
     
     public Action(String s)
     {

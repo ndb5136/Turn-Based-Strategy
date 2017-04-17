@@ -9,17 +9,17 @@ import java.io.Serializable;
 public class Player implements Serializable
 {
     private String name;
-    private String playerClass;
+    private String playerCharacter;
     
     public Player(String n, String pC)
     {
         name = n;
-        playerClass = pC;
+        playerCharacter = pC;
     }
     
     public String toString()
     {
-        return "Name: " + name + "\tClass: " + playerClass;
+        return "Name: " + name + "\tClass: " + playerCharacter;
     }
     
     public String getName()
@@ -29,6 +29,6 @@ public class Player implements Serializable
     
     public String getPlayerClass()
     {
-        return playerClass;
+        return playerCharacter;
     }
 }
