@@ -17,6 +17,18 @@ public class PhysicalAttack extends Action{
     }
     
     
+    
+    public String toString()
+    {
+        if (type.equals("end"))
+            return "end";
+        else if (type.equals("Waiting for Player"))
+            return "Server is waiting";
+        else if (type.equals("Server has 2 players already"))
+            return "Server has 2 players already";
+        else
+            return "Type: " + getType() + "\nStat: " + getStatEffected() + "\nAmount: " + getAmount();
+    }
 }
 
 /*
