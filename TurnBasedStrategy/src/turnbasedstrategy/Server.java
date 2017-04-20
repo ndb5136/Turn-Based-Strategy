@@ -125,16 +125,26 @@ public class Server
                 output = new ObjectOutputStream(clientSocket.getOutputStream());
                 output.flush();
                 Action action = new Action("Waiting for Player");
-                Player player;
+                Player player = new Player("Mr. Peanutbutter", "The Dog");
                 
                 
                 //Sout for troubleshooting
                 System.out.println("Action : " + action);
-                    
+                   
+                try 
+                {
+                    player = (Player) input.readObject();
+                } catch (ClassNotFoundException ex) 
+                {
+                    Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+                System.out.println("Player Connected : " + player);
+                
                 //Write the waiting action to the socket
-                output.writeObject(action);
-                Action action2 = new Action("Stab", "Physical", 9000);
-                output.writeObject(action2);
+                //output.writeObject(action);
+                //Action action2 = new Action("Stab", "Physical", 9000);
+                //output.writeObject(action2);
 //                Action action3 = new Action("end");
 //                output.writeObject(action3); 
 //                clientnumber--;

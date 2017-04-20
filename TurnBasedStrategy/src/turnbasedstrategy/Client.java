@@ -52,12 +52,13 @@ public class Client implements Runnable
     /**
      * 
      */
-    public static void communicate()
+    public void communicate()
     {
         Player person = new Player(username, characterName);
         
         try 
         {
+            System.out.println("Person to write : " + person);
             output.writeObject(person);
         } 
         catch (IOException ex) 
@@ -69,7 +70,7 @@ public class Client implements Runnable
     /**
      * Close the client connection
      */
-    public static void closeClient()
+    public void closeClient()
     {
         
         try 
@@ -88,20 +89,20 @@ public class Client implements Runnable
     /**
      * Function in instantiate the client thread
      */
-    public static void instantiateThread()
+    public void instantiateThread()
     {
         //If all variables have been instantiated, create a new thread for the client
         if(clientSocket != null && output != null && input != null)
         {
             //create the client side server
-            new Thread(new Client()).start();
+            new Thread(new Client(username,characterName)).start();
         }
     }
     
     /**
      * Function to instantiate the client socket, and the input and output streams
      */
-    public static void startConnection()
+    public void startConnection()
     {
         try
         {
@@ -122,6 +123,8 @@ public class Client implements Runnable
      */
     public void run() 
     {
+        
+        
         //Action to recieve from the server
         Action response;
         
@@ -150,7 +153,7 @@ public class Client implements Runnable
         }
     }
     
-    public static void main(String[] args)
+    public void connectToServer()
     {
         //Call the function to start the connection
         startConnection();
@@ -158,8 +161,15 @@ public class Client implements Runnable
         instantiateThread();
         
         communicate();
+    }
+    
+    public static void main(String[] args)
+    {
+        Client client = new Client("Mr. Peanutbutter", "The Dog");
+           
+        client.connectToServer();
         
         if (closed == true)
-            closeClient();
+            client.closeClient();
     }
 }
