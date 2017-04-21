@@ -227,7 +227,8 @@ public class jpPlayer extends javax.swing.JPanel {
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         
         
-        Client client = new Client();
+        Client client = new Client(username, characterName);
+        client.connectToServer();
         
     }//GEN-LAST:event_jButton6ActionPerformed
 
