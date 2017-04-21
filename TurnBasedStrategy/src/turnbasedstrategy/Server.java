@@ -73,6 +73,7 @@ public class Server
                         System.out.println("client " +clientnumber);
                         break;
                     }
+                    System.out.println("Max : " + maxClientCount + "\nCurrent Number : " + i);
                 }
                 //if the room has 2 players, let the client know the room is full
                 if(i >= maxClientCount)
