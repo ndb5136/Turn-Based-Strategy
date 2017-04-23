@@ -27,34 +27,33 @@ public class Server
     private int clientnumber=0;
     
     //Declare thread variables
-    private static final int maxClientCount = 2;
+    private static final int maxClientCount = 100;
     private static final clientThread[] threads = new clientThread[maxClientCount];
     
     //Declare the port number
     private int portNumber = 2222;
     
     
-    public Server()
+    public void instantiateSockets()
     {
-        System.out.println("Usage: java MultiThreadChatServerSync <portNumber>\n"
-                + "Now using port number = " + portNumber);
-        
         //Declare the server socket
         try
         {
             serverSocket = new ServerSocket(portNumber);
+            
+            if (clientSocket!= null)
+            {
+                input = new ObjectInputStream(clientSocket.getInputStream());
+            }
         }
         catch(IOException e)
         {
             System.out.println(e);
         }
-        try {
-            if (clientSocket!= null){
-                input = new ObjectInputStream(clientSocket.getInputStream());}
-        } catch (IOException ex) {
-            Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+    }
+    
+    public void stayConnected()
+    {
         while (true)
         {
             try 
@@ -78,7 +77,7 @@ public class Server
                 //if the room has 2 players, let the client know the room is full
                 if(i >= maxClientCount)
                 {
-                    Action action = new Action("Server has 2 players already");
+                    Action action = new Action("Server is currently full");
                     output = new ObjectOutputStream(clientSocket.getOutputStream());
                     output.writeObject(action);
                 }                
@@ -88,6 +87,19 @@ public class Server
                 Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+    }
+    
+    public Server()
+    {
+        System.out.println("Usage: java MultiThreadChatServerSync <portNumber>\n"
+                + "Now using port number = " + portNumber);
+        
+        instantiateSockets();
+        
+        stayConnected();
+        
+        
+        
         
     }
 
@@ -126,6 +138,7 @@ public class Server
                 output = new ObjectOutputStream(clientSocket.getOutputStream());
                 output.flush();
                 Action action = new Action("Waiting for Player");
+                
                 Player player = new Player("Mr. Peanutbutter", "The Dog");
                 
                 
@@ -149,17 +162,25 @@ public class Server
 //                Action action3 = new Action("end");
 //                output.writeObject(action3); 
 //                clientnumber--;
-                try 
+              
+                boolean control = true;
+                do
                 {
-                    //Read in the player from the client
-                    player = (Player) input.readObject();
-                    System.out.println(player.getName() + " the " + player.getPlayerClass() + " has connected");
-                } 
-                catch (ClassNotFoundException ex) 
-                {
-                    Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                
+                    try 
+                    {
+                        action = (Action) input.readObject();
+                        
+                        System.out.println("Action recieved by the server :\n" + action);
+                        
+                        if (action.getType().equals("end"))
+                            control = false;
+                        
+                    } 
+                    catch (ClassNotFoundException ex) 
+                    {
+                        Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }while(control);
                 
             } 
             catch (IOException ex) 

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -35,6 +36,8 @@ public class Client implements Runnable
     private static String username;
     private static String characterName;
     
+    
+    
     /**
      * Constructor for the Client class
      */
@@ -49,17 +52,65 @@ public class Client implements Runnable
         characterName=c;
     }
     
+    public Action getAction()
+    {
+        Scanner scan = new Scanner(System.in);
+        Action action = new Action("");
+        
+        System.out.print("Enter the action : ");
+        action.setType(scan.nextLine());
+        
+        System.out.println("\nAction entered : " + action);
+        
+        return action;
+    }
+    
+    public void sendAction(Action action)
+    {
+        try 
+        {
+            output.writeObject(action);
+        } 
+        catch (IOException ex) 
+        {
+            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     /**
      * 
      */
     public void communicate()
     {
         Player person = new Player(username, characterName);
+        Action action = new Action("");
         
         try 
         {
             System.out.println("Person to write : " + person);
             output.writeObject(person);
+            
+            //Control for the loop in the communicate function
+            boolean control = true;
+    
+            do
+            {
+                action = getAction();
+                
+                if(action.getType().equals("end"))
+                {
+                    System.out.println("Why am I not getting here");
+                    control = false;
+                }
+                
+                sendAction(action);
+
+                System.out.println("Control : " + control);
+                
+            }while(control == true);
+            
+            closeClient();
+            
         } 
         catch (IOException ex) 
         {
@@ -127,12 +178,12 @@ public class Client implements Runnable
         
         //Action to recieve from the server
         Action response;
-        
+        /**
         try 
         {          
             
             //While the response object is not null, continue running
-            while((response = (Action) input.readObject()) != null)
+            while(true)
             {
                 //Output the response for troubleshooting
                 System.out.println(response);
@@ -145,12 +196,14 @@ public class Client implements Runnable
                     break;
             }
             
+            
             closed = true;
         } 
         catch (IOException | ClassNotFoundException ex) 
         {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
         }
+        */
     }
     
     public void connectToServer()
