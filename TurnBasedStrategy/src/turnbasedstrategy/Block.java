@@ -9,25 +9,11 @@ package turnbasedstrategy;
  *
  * @author pmo5053
  */
-public class PhysicalAttack extends Action{
-    public String move;
-    
-    public double amount;
-    
-    
-    public PhysicalAttack(String t, String stat, double a) {
+public class Block extends Action{
+
+    public Block(String t, String stat, double a) {
         super(t, stat, a);
     }
-    
-    public void setMoveName(String move){
-        this.move=move;
-    }
-    
-    public String getMoveName(){
-        return move;
-    }
-    
-    
     
     public String toString()
     {
@@ -38,13 +24,6 @@ public class PhysicalAttack extends Action{
         else if (type.equals("Server has 2 players already"))
             return "Server has 2 players already";
         else
-            return "Move: " + getMoveName() + "\nType: " + getType() + "\nStat: " + getStatEffected() + "\nAmount: " + getAmount();
+            return "\nStat: " + getStatEffected() + "\nAmount: " + getAmount();
     }
 }
-
-/*
-name of move
-base damage (to start)
-stat changes
-
-*/
