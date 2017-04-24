@@ -77,6 +77,18 @@ public class Client implements Runnable
         }
     }
     
+    public void getFeedback()
+    {
+        try 
+        {
+            input.readObject();
+        } 
+        catch (IOException | ClassNotFoundException ex) 
+        {
+            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     /**
      * 
      */
@@ -99,13 +111,14 @@ public class Client implements Runnable
                 
                 if(action.getType().equals("end"))
                 {
-                    System.out.println("Why am I not getting here");
                     control = false;
                 }
                 
                 sendAction(action);
 
                 System.out.println("Control : " + control);
+                
+                //getFeedback();
                 
             }while(control == true);
             

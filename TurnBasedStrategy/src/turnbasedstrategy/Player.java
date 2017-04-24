@@ -11,6 +11,11 @@ public class Player implements Serializable
     private String name;
     private String playerCharacter;
     
+    public Player()
+    {
+        
+    }
+    
     public Player(String n, String pC)
     {
         name = n;

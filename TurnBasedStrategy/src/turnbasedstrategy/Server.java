@@ -128,6 +128,16 @@ public class Server
             this.threads = threads;
             maxClientsCount = threads.length;
         }
+        
+        public void findGame()
+        {
+            System.out.println("Got into the find game function\n");
+            try {
+                output.writeObject(new Action("Searching for a game"));
+            } catch (IOException ex) {
+                Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
 
         public void run()
         {
@@ -139,11 +149,13 @@ public class Server
                 output.flush();
                 Action action = new Action("Waiting for Player");
                 
-                Player player = new Player("Mr. Peanutbutter", "The Dog");
+                Player player = new Player();
                 
                 
                 //Sout for troubleshooting
                 System.out.println("Action : " + action);
+                
+                //if(action.getType() = )
                    
                 try 
                 {
@@ -161,7 +173,7 @@ public class Server
                 //output.writeObject(action2);
 //                Action action3 = new Action("end");
 //                output.writeObject(action3); 
-//                clientnumber--;
+//                clientnumber--; 
               
                 boolean control = true;
                 do
@@ -174,6 +186,9 @@ public class Server
                         
                         if (action.getType().equals("end"))
                             control = false;
+                        
+                        if(action.getType().equals("Find Game"))
+                            findGame();
                         
                     } 
                     catch (ClassNotFoundException ex) 
