@@ -33,6 +33,7 @@ public class jpCharacters extends javax.swing.JPanel {
     double mana;
     double health;
     int exp;
+    int currentEXP;
     int level;
     
     PreparedStatement ps;
@@ -98,7 +99,6 @@ public class jpCharacters extends javax.swing.JPanel {
 
         jProgressBar1.setToolTipText("");
         jProgressBar1.setRequestFocusEnabled(false);
-        jProgressBar1.setString(getToolTipText());
         jProgressBar1.setStringPainted(true);
 
         jLabel3.setText("Attack");
@@ -474,7 +474,7 @@ public class jpCharacters extends javax.swing.JPanel {
             exp = Integer.parseInt(S);
             
             
-            int n = exp;
+            int currentEXP = exp;
             int z = 100;
             level = 1;
             while(exp >= z){
@@ -482,10 +482,13 @@ public class jpCharacters extends javax.swing.JPanel {
                 z = z + (level * 100);
             }
             z = z - (level * 100);
-            n = n - z;
+            currentEXP = currentEXP - z;
+            z = (level*100);
             
             jProgressBar1.setMaximum(z);
-            jProgressBar1.setValue(n);
+            jProgressBar1.setValue(currentEXP);
+            S = Integer.toString(currentEXP);
+            jProgressBar1.setString(S);
             S = Integer.toString(level);
             jTextPane1.setText(S);
             
