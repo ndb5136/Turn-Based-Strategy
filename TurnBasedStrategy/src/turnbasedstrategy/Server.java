@@ -5,6 +5,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -21,10 +22,13 @@ public class Server
     //Declare the sockets
     private ServerSocket serverSocket = null;
     private Socket clientSocket;
-    private ObjectOutputStream output;
+    private ObjectOutputStream serverOutput;
     private Action response;
-    private static ObjectInputStream input;
+    private static ObjectInputStream serverInput;
     private int clientnumber=0;
+    private ArrayList<BattleGround> battles;
+    private static int totalInGames;
+    private static int nextGameOpen;
     
     //Declare thread variables
     private static final int maxClientCount = 100;
@@ -43,7 +47,7 @@ public class Server
             
             if (clientSocket!= null)
             {
-                input = new ObjectInputStream(clientSocket.getInputStream());
+                serverInput = new ObjectInputStream(clientSocket.getInputStream());
             }
         }
         catch(IOException e)
@@ -78,8 +82,8 @@ public class Server
                 if(i >= maxClientCount)
                 {
                     Action action = new Action("Server is currently full");
-                    output = new ObjectOutputStream(clientSocket.getOutputStream());
-                    output.writeObject(action);
+                    serverOutput = new ObjectOutputStream(clientSocket.getOutputStream());
+                    serverOutput.writeObject(action);
                 }                
             } 
             catch (IOException ex) 
@@ -93,6 +97,9 @@ public class Server
     {
         System.out.println("Usage: java MultiThreadChatServerSync <portNumber>\n"
                 + "Now using port number = " + portNumber);
+        
+        //Instantiate the battle rooms
+        battles = new ArrayList<BattleGround>();
         
         instantiateSockets();
         
@@ -109,12 +116,13 @@ public class Server
     class clientThread extends Thread
     {
         //Declare streams and socket
-        private ObjectOutputStream output = null;
-        private ObjectInputStream input = null;
-        private Socket clientSocket = null;
+        protected ObjectOutputStream output = null;
+        protected ObjectInputStream input = null;
+        protected Socket clientSocket = null;
         
         private clientThread[] threads;
         private int maxClientsCount;
+
         
         
         /**
@@ -129,52 +137,57 @@ public class Server
             maxClientsCount = threads.length;
         }
         
-        public void findGame()
+        public void setOpponentStream(clientThread opponent)
         {
-            System.out.println("Got into the find game function\n");
-            try {
-                output.writeObject(new Action("Searching for a game"));
-            } catch (IOException ex) {
+            
+            try 
+            {
+                input = new ObjectInputStream(opponent.clientSocket.getInputStream());
+                output = new ObjectOutputStream(opponent.clientSocket.getOutputStream());
+                System.out.println("Set the Opponent's Streams");
+            } 
+            catch (IOException ex) 
+            {
                 Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-
-        public void run()
-        {
-            try 
+        
+        
+        public void findGame()
+        {            
+            if(totalInGames % 2 == 0)
             {
-                //Instantiate the input and output variables to the client's input and output streams
-                input = new ObjectInputStream(clientSocket.getInputStream());
-                output = new ObjectOutputStream(clientSocket.getOutputStream());
-                output.flush();
-                Action action = new Action("Waiting for Player");
-                
-                Player player = new Player();
-                
-                
-                //Sout for troubleshooting
-                System.out.println("Action : " + action);
-                
-                //if(action.getType() = )
-                   
-                try 
-                {
-                    player = (Player) input.readObject();
-                } catch (ClassNotFoundException ex) 
-                {
-                    Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                
-                System.out.println("Player Connected : " + player);
-                
-                //Write the waiting action to the socket
-                //output.writeObject(action);
-                //Action action2 = new Action("Stab", "Physical", 9000);
-                //output.writeObject(action2);
-//                Action action3 = new Action("end");
-//                output.writeObject(action3); 
-//                clientnumber--; 
-              
+                battles.add(new BattleGround(this));
+                totalInGames++;
+            }
+            else
+            {
+                System.out.println("Got into the else in findGame()");
+                battles.get(nextGameOpen).getPlayerTwo(this);
+                totalInGames++;
+                nextGameOpen++;
+            }
+            
+        }
+        
+        public Player getPlayer()
+        {
+            try
+            {
+                return (Player) input.readObject();
+            } 
+            catch (ClassNotFoundException | IOException ex) 
+            {
+                Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            return new Player("ERROR IN GET PLAYER","ERROR");
+        }
+        
+        public void stayConnected()
+        {
+            Action action;
+            
                 boolean control = true;
                 do
                 {
@@ -190,12 +203,39 @@ public class Server
                         if(action.getType().equals("Find Game"))
                             findGame();
                         
+                        System.out.println("\ntotalInGames : " + totalInGames + "\nnextGameOpen : " + nextGameOpen + " \n");
+                        
                     } 
-                    catch (ClassNotFoundException ex) 
+                    catch (ClassNotFoundException | IOException ex) 
                     {
                         Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }while(control);
+        }
+
+        public void run()
+        {
+            try 
+            {
+                //Instantiate the input and output variables to the client's input and output streams
+                input = new ObjectInputStream(clientSocket.getInputStream());
+                output = new ObjectOutputStream(clientSocket.getOutputStream());
+                output.flush();
+                Action action = new Action("Waiting for Player");
+                
+                Player player;
+                
+                
+                //Sout for troubleshooting
+                //System.out.println("Action : " + action);
+                
+                player = getPlayer();
+                
+                System.out.println("\nPlayer Connected : " + player + "\n");
+                
+                stayConnected();
+              
+                
                 
             } 
             catch (IOException ex) 

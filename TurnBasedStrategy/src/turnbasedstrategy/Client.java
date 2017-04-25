@@ -99,11 +99,12 @@ public class Client implements Runnable
         
         try 
         {
-            System.out.println("Person to write : " + person);
+            System.out.println("Person to write : \n" + person + "\n");
             output.writeObject(person);
             
             //Control for the loop in the communicate function
             boolean control = true;
+            
     
             do
             {
@@ -115,10 +116,6 @@ public class Client implements Runnable
                 }
                 
                 sendAction(action);
-
-                System.out.println("Control : " + control);
-                
-                //getFeedback();
                 
             }while(control == true);
             

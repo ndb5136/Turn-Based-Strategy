@@ -5,17 +5,76 @@
  */
 package turnbasedstrategy;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import turnbasedstrategy.Server.clientThread;
+
 /**
  *
  * @author eih5176
  */
 public class BattleGround extends javax.swing.JFrame {
 
+    private clientThread playerOne, playerTwo;
+    private boolean full;
+    
     /**
      * Creates new form BattleGround
      */
     public BattleGround() {
         initComponents();
+    }
+    
+    public BattleGround(clientThread pOne) 
+    {
+        playerOne = pOne;
+        full = false;
+        
+        initComponents();
+    }
+    
+    public void writePlayersToEachOther()
+    {
+        try 
+        {
+            playerOne.output.writeObject(playerOne.getPlayer());
+            System.out.println("\nPlayer One : " + playerTwo.input.readObject() + "\n");
+            playerTwo.output.writeObject(playerTwo.getPlayer());
+            System.out.println("\nPlayer Two : " + playerOne.input.readObject() + "\n");
+        } 
+        catch (IOException | ClassNotFoundException ex) 
+        {
+            Logger.getLogger(BattleGround.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void playGame()
+    {
+        writePlayersToEachOther();
+        
+    }
+    
+    public void connectPlayers()
+    {
+        
+        playerOne.setOpponentStream(playerTwo);
+        playerTwo.setOpponentStream(playerOne);
+        
+    }
+    
+    public void getPlayerTwo(clientThread pTwo)
+    {
+        System.out.println("Got into getPlayerTwo");
+        
+        playerTwo = pTwo;
+        full = true;
+        
+        connectPlayers();
+        
+        System.out.println("Got past ConnectPlayers()");
+        
+        playGame();
     }
 
     /**
