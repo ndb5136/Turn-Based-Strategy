@@ -136,18 +136,24 @@ public class jpLevelUp extends javax.swing.JPanel {
 
         jLabel2.setText("Speed");
 
+        jTextPane2.setEditable(false);
         jScrollPane2.setViewportView(jTextPane2);
 
+        jTextPane3.setEditable(false);
         jScrollPane3.setViewportView(jTextPane3);
 
+        jTextPane4.setEditable(false);
         jScrollPane4.setViewportView(jTextPane4);
 
         jScrollPane5.setViewportView(jTextPane5);
 
+        jTextPane6.setEditable(false);
         jScrollPane6.setViewportView(jTextPane6);
 
+        jTextPane7.setEditable(false);
         jScrollPane7.setViewportView(jTextPane7);
 
+        jTextPane8.setEditable(false);
         jScrollPane8.setViewportView(jTextPane8);
 
         jTextField1.setText("Character Name");

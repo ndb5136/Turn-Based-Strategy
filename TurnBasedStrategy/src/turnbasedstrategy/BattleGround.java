@@ -5,7 +5,11 @@
  */
 package turnbasedstrategy;
 
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import turnbasedstrategy.Server.clientThread;
@@ -24,6 +28,37 @@ public class BattleGround extends javax.swing.JFrame {
      */
     public BattleGround() {
         initComponents();
+        init();
+    }
+    
+    BufferedImage sprites;
+    
+    Animator Knight;
+    
+    private void init(){
+        BufferedImageLoader loader = new BufferedImageLoader();
+        BufferedImage spriteSheet = null;
+        try {
+            spriteSheet = loader.loadImage("Knight.png");
+        } catch (IOException ex) {
+            Logger.getLogger(BattleGround.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        SpriteSheet ss = new SpriteSheet(spriteSheet);
+        
+        ArrayList<BufferedImage> sprites = new ArrayList<BufferedImage>();
+        
+        sprites.add(ss.grabSprite(0, 450, 63, 63));
+        sprites.add(ss.grabSprite(63, 450, 63, 63));
+        sprites.add(ss.grabSprite(126, 450, 63, 63));
+        sprites.add(ss.grabSprite(190, 450, 63, 63));
+        sprites.add(ss.grabSprite(260, 450, 65, 63));
+        sprites.add(ss.grabSprite(320, 450, 65, 63));
+        sprites.add(ss.grabSprite(385, 450, 63, 63));
+        sprites.add(ss.grabSprite(450, 450, 63, 63));
+        
+        Knight = new Animator(sprites);
+        Knight.setSpeed(150);
+        Knight.play();
     }
     
     public BattleGround(clientThread pOne) 
@@ -86,41 +121,23 @@ public class BattleGround extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jComboBox1 = new javax.swing.JComboBox();
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(88, 88, 88)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(856, Short.MAX_VALUE))
+            .addGap(0, 1000, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(353, Short.MAX_VALUE)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(127, 127, 127))
+            .addGap(0, 500, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
-
+        
+    
     /**
      * @param args the command line arguments
      */
@@ -154,9 +171,33 @@ public class BattleGround extends javax.swing.JFrame {
                 new BattleGround().setVisible(true);
             }
         });
-    }
 
+        
+    }
+        Image dbImage;
+        Graphics dbg;
+        
+    
+        @Override
+        public void paint(Graphics g){
+            dbImage = createImage(getWidth(), getHeight());
+            dbg = dbImage.getGraphics();
+            paintComponent(dbg);
+            
+            
+            g.drawImage(dbImage, 100, 100, null);
+        }
+        
+        public void paintComponent(Graphics g) {
+            if(Knight != null ) {
+                Knight.update(System.currentTimeMillis());
+                g.drawImage(Knight.sprite, 100, 100, null);
+            }
+            
+            repaint();
+        }
+        
+       
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox jComboBox1;
     // End of variables declaration//GEN-END:variables
 }

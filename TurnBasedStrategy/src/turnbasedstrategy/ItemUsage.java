@@ -9,27 +9,23 @@ package turnbasedstrategy;
  *
  * @author pmo5053
  */
-public class PhysicalAttack extends Action{
-    public String move;
+public class ItemUsage extends Action{
+    public String itemName;
     
-    public double amount;
-    
-    
-    public PhysicalAttack(String t, String stat, double a) {
+    public ItemUsage(String t, String stat, double a) {
         super(t, stat, a);
     }
     
-    public void setMoveName(String move){
-        this.move=move;
+    public void setItemName(String itemName){
+        this.itemName = itemName;
     }
     
-    public String getMoveName(){
-        return move;
+    public String getItemName(){
+        return itemName;
     }
     
     
-    
-    public String toString()
+        public String toString()
     {
         if (type.equals("end"))
             return "end";
@@ -38,13 +34,6 @@ public class PhysicalAttack extends Action{
         else if (type.equals("Server has 2 players already"))
             return "Server has 2 players already";
         else
-            return "Move: " + getMoveName() + "\nType: " + getType() + "\nStat: " + getStatEffected() + "\nAmount: " + getAmount();
+            return "Item: " + getItemName() + "\nStat: " + getStatEffected() + "\nAmount: " + getAmount();
     }
 }
-
-/*
-name of move
-base damage (to start)
-stat changes
-
-*/
