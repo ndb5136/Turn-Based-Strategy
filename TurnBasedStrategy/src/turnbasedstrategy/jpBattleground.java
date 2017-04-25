@@ -104,7 +104,7 @@ public class jpBattleground extends javax.swing.JPanel {
 //                      JPanel Battleground = new jpBattleground();
 //                      jdBattleground.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 //                      jdBattleground.add(Battleground);
-//                      jdBattleground.setSize(800, 600);
+//                      jdBattleground.setSize(800, 630);
 //                      jdBattleground.setModal(true);
 //                      jdBattleground.setVisible(true);
     

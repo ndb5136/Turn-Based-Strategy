@@ -6,8 +6,10 @@
 package turnbasedstrategy;
 
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -25,19 +27,34 @@ public class BattleGround extends javax.swing.JFrame {
         init();
     }
     
-    BufferedImage sprite;
+    BufferedImage sprites;
+    
+    Animator Knight;
     
     private void init(){
         BufferedImageLoader loader = new BufferedImageLoader();
         BufferedImage spriteSheet = null;
         try {
-            spriteSheet = loader.loadImage("KnightTemplate.png");
+            spriteSheet = loader.loadImage("Knight.png");
         } catch (IOException ex) {
             Logger.getLogger(BattleGround.class.getName()).log(Level.SEVERE, null, ex);
         }
         SpriteSheet ss = new SpriteSheet(spriteSheet);
         
-        sprite = ss.grabSprite(30, 30, 170, 120);
+        ArrayList<BufferedImage> sprites = new ArrayList<BufferedImage>();
+        
+        sprites.add(ss.grabSprite(0, 450, 63, 63));
+        sprites.add(ss.grabSprite(63, 450, 63, 63));
+        sprites.add(ss.grabSprite(126, 450, 63, 63));
+        sprites.add(ss.grabSprite(190, 450, 63, 63));
+        sprites.add(ss.grabSprite(260, 450, 65, 63));
+        sprites.add(ss.grabSprite(320, 450, 65, 63));
+        sprites.add(ss.grabSprite(385, 450, 63, 63));
+        sprites.add(ss.grabSprite(450, 450, 63, 63));
+        
+        Knight = new Animator(sprites);
+        Knight.setSpeed(150);
+        Knight.play();
     }
 
     /**
@@ -102,11 +119,30 @@ public class BattleGround extends javax.swing.JFrame {
 
         
     }
+        Image dbImage;
+        Graphics dbg;
+        
+    
         @Override
         public void paint(Graphics g){
-            g.drawImage(sprite, 100, 100, null);
+            dbImage = createImage(getWidth(), getHeight());
+            dbg = dbImage.getGraphics();
+            paintComponent(dbg);
+            
+            
+            g.drawImage(dbImage, 100, 100, null);
+        }
+        
+        public void paintComponent(Graphics g) {
+            if(Knight != null ) {
+                Knight.update(System.currentTimeMillis());
+                g.drawImage(Knight.sprite, 100, 100, null);
+            }
+            
             repaint();
         }
+        
+       
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
 }
