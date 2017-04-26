@@ -26,7 +26,7 @@ public class Server
     private Action response;
     private static ObjectInputStream serverInput;
     private int clientnumber=0;
-    private ArrayList<BattleGround> battles;
+    private ArrayList<jpBattleground> battles;
     private static int totalInGames;
     private static int nextGameOpen;
     
@@ -99,7 +99,7 @@ public class Server
                 + "Now using port number = " + portNumber);
         
         //Instantiate the battle rooms
-        battles = new ArrayList<BattleGround>();
+        battles = new ArrayList<jpBattleground>();
         
         instantiateSockets();
         
@@ -118,6 +118,8 @@ public class Server
         //Declare streams and socket
         protected ObjectOutputStream output = null;
         protected ObjectInputStream input = null;
+        protected ObjectOutputStream inGameOutput = null;
+        protected ObjectInputStream inGameInput = null;
         protected Socket clientSocket = null;
         
         private clientThread[] threads;
@@ -142,8 +144,9 @@ public class Server
             
             try 
             {
-                input = new ObjectInputStream(opponent.clientSocket.getInputStream());
-                output = new ObjectOutputStream(opponent.clientSocket.getOutputStream());
+                System.out.println("Got into set Opponent Stream");
+                inGameInput = new ObjectInputStream(opponent.clientSocket.getInputStream());
+                inGameOutput = new ObjectOutputStream(opponent.clientSocket.getOutputStream());
                 System.out.println("Set the Opponent's Streams");
             } 
             catch (IOException ex) 
@@ -157,12 +160,11 @@ public class Server
         {            
             if(totalInGames % 2 == 0)
             {
-                battles.add(new BattleGround(this));
+                battles.add(new jpBattleground(this));
                 totalInGames++;
             }
             else
             {
-                System.out.println("Got into the else in findGame()");
                 battles.get(nextGameOpen).getPlayerTwo(this);
                 totalInGames++;
                 nextGameOpen++;

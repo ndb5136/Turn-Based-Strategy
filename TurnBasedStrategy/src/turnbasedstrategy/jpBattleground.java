@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import turnbasedstrategy.Server.clientThread;
 
 /**
  *
@@ -25,6 +26,10 @@ public class jpBattleground extends javax.swing.JPanel {
     private static String character1;
     private static String player2;
     private static String character2;
+    
+    private clientThread threadPlayerOne;
+    private clientThread threadPlayerTwo;
+    private boolean full;
 
     int ID;
     String characterName;
@@ -48,6 +53,9 @@ public class jpBattleground extends javax.swing.JPanel {
     public jpBattleground() {
         initComponents();
         
+        threadPlayerOne = null;
+        threadPlayerTwo = null;
+        
         jPanel1.setVisible(false);
         
         jTextPane1.setText(player1);
@@ -61,6 +69,35 @@ public class jpBattleground extends javax.swing.JPanel {
         loadCharacter();
         
 }
+    public jpBattleground(clientThread pOne) 
+    {
+        threadPlayerOne = pOne;
+        full = false;
+        
+        initComponents();
+    }
+    
+    public void getPlayerTwo(clientThread pTwo)
+    {
+        System.out.println("Got into getPlayerTwo");
+        
+        threadPlayerTwo = pTwo;
+        full = true;
+        
+        connectPlayers();
+        
+        System.out.println("Got past ConnectPlayers()");
+        
+        //playGame();
+    }
+    
+    public void connectPlayers()
+    {
+        
+        threadPlayerOne.setOpponentStream(threadPlayerTwo);
+        threadPlayerTwo.setOpponentStream(threadPlayerOne);
+        
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.

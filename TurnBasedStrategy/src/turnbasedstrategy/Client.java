@@ -45,11 +45,13 @@ public class Client implements Runnable
     {
         username="Paul";
         characterName="Archsassin";
+        
     }
     public Client(String n, String c)
     {
         username=n;
         characterName=c;
+        
     }
     
     public Action getAction()
@@ -188,6 +190,8 @@ public class Client implements Runnable
         
         //Action to recieve from the server
         Action response;
+        
+        
         /**
         try 
         {          
@@ -228,11 +232,11 @@ public class Client implements Runnable
     
     public static void main(String[] args)
     {
-        Client client = new Client("Mr. Peanutbutter", "The Dog");
+        //Client client = new Client("Mr. Peanutbutter", "The Dog");
            
-        client.connectToServer();
         
-        if (closed == true)
-            client.closeClient();
+        
+        //if (closed == true)
+           // client.closeClient();
     }
 }

@@ -193,6 +193,8 @@ public class jpLogin extends javax.swing.JPanel {
                 {
                     y++;
                 }
+                
+                
                 else
                 {
                     JOptionPane.showMessageDialog(frame, "The username and password do not match. Please try logging in again.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -201,7 +203,9 @@ public class jpLogin extends javax.swing.JPanel {
             else{
                 JOptionPane.showMessageDialog(frame, "Please sign up for an account.", "Error", JOptionPane.ERROR_MESSAGE);
             }
-            if(y == 2){             
+            if(y == 2){ 
+                Client cl = new Client(username,"");
+                cl.connectToServer();
                 this.getTopLevelAncestor().setVisible(false);
                 ps.close();
                 con.close();
@@ -211,6 +215,7 @@ public class jpLogin extends javax.swing.JPanel {
         } catch (SQLException ex) {
             Logger.getLogger(jpLogin.class.getName()).log(Level.SEVERE, null, ex);
         }
+
     }//GEN-LAST:event_jbLoginActionPerformed
 
     private void tfPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfPasswordActionPerformed
