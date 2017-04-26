@@ -408,6 +408,10 @@ public class jpCharacters extends javax.swing.JPanel {
             jProgressBar1.setValue(exp);
             
             level = 1;
+            jProgressBar1.setMaximum(100);
+            jProgressBar1.setValue(0);
+            S = Integer.toString(0);
+            jProgressBar1.setString(S);
             S = Integer.toString(level);
             jTextPane1.setText(S);
                     
