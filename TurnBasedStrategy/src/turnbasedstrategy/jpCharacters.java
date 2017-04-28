@@ -436,7 +436,7 @@ public class jpCharacters extends javax.swing.JPanel {
             S = rs.getString(1);
             ID = Integer.parseInt(S);
             
-            ps = con.prepareStatement("SELECT characterType FROM defaultCharacters WHERE characterName = '" + characterName + "';");
+            ps = con.prepareStatement("SELECT characterType FROM characters WHERE characterName = '" + characterName + "';");
             rs = ps.executeQuery();
             S = rs.getString(1);
             characterType = Integer.parseInt(S); 
