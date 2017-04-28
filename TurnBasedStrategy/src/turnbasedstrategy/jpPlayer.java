@@ -195,7 +195,7 @@ public class jpPlayer extends javax.swing.JPanel {
         JPanel Characters = new jpCharacters();
         jdCharacters.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         jdCharacters.add(Characters);
-        jdCharacters.setSize(500, 500);
+        jdCharacters.setSize(500, 600);
         jdCharacters.setModal(true);
         jdCharacters.setVisible(true);
         

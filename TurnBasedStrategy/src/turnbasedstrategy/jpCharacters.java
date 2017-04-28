@@ -43,6 +43,7 @@ public class jpCharacters extends javax.swing.JPanel {
     int column;
     String S;
     JFrame frame;
+    StringBuilder B = new StringBuilder();
     
     /**
      * Creates new form Characters
@@ -95,6 +96,9 @@ public class jpCharacters extends javax.swing.JPanel {
         jTextPane1 = new javax.swing.JTextPane();
         jLabel8 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
 
         jLabel1.setText("Health");
 
@@ -175,6 +179,12 @@ public class jpCharacters extends javax.swing.JPanel {
             }
         });
 
+        jLabel9.setText("Move Set:");
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane9.setViewportView(jTextArea1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -201,27 +211,32 @@ public class jpCharacters extends javax.swing.JPanel {
                                 .addGap(50, 50, 50)
                                 .addComponent(jButton2))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(99, 99, 99)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel3))
-                        .addGap(75, 75, 75)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane6, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane7, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane8, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(188, 188, 188)
-                        .addComponent(jButton4)))
+                        .addComponent(jButton4))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(44, 44, 44)
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel3))
+                                .addGap(75, 75, 75)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jScrollPane6, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jScrollPane7, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jScrollPane8, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -263,6 +278,10 @@ public class jpCharacters extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel9)
+                    .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(14, 14, 14)
@@ -272,7 +291,7 @@ public class jpCharacters extends javax.swing.JPanel {
                     .addComponent(jButton1)
                     .addComponent(jButton2)
                     .addComponent(jButton3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton4)
                 .addContainerGap())
         );
@@ -420,7 +439,33 @@ public class jpCharacters extends javax.swing.JPanel {
             jProgressBar1.setString(S);
             S = Integer.toString(level);
             jTextPane1.setText(S);
-                    
+            
+            if (characterType == 1 || characterType == 2 || characterType == 4) {
+                ps = con.prepareStatement("SELECT Name FROM Physical Attack WHERE characterType = " + characterType);
+                rs = ps.executeQuery();
+                rsMD = rs.getMetaData();
+                column = rsMD.getColumnCount();
+                
+                while (rs.next() == true) {
+                    for (int n = 1; n <= column; n++) {
+                        S = rs.getString(n);
+                        B = B.append(S).append("\n");
+                        jTextArea1.setText(B.toString());
+                    }
+                }
+            } else {
+                ps = con.prepareStatement("SELECT Name FROM Spells WHERE characterType = " + characterType);
+                rs = ps.executeQuery();
+                rsMD = rs.getMetaData();
+                column = rsMD.getColumnCount();
+                while (rs.next() == true) {
+                    for (int n = 1; n <= column; n++) {
+                        S = rs.getString(n);
+                        B = B.append(S).append("\n");
+                        jTextArea1.setText(B.toString());
+                    }
+                }
+            }
         } catch (SQLException ex) {
             Logger.getLogger(jpCharacters.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -507,6 +552,31 @@ public class jpCharacters extends javax.swing.JPanel {
             S = Integer.toString(level);
             jTextPane1.setText(S);
             
+            if(characterType == 1 || characterType == 2 || characterType == 4){
+            ps = con.prepareStatement("SELECT Name FROM Physical Attack WHERE characterType = " + characterType);
+            rs = ps.executeQuery();
+                rsMD = rs.getMetaData();
+                column = rsMD.getColumnCount();
+                while(rs.next() == true){
+                    for(int n = 1; n <= column; n++){
+                        S = rs.getString(n);
+                        B = B.append(S).append("\n");
+                        jTextArea1.setText(B.toString());
+                    }
+                }
+            }else{
+            ps = con.prepareStatement("SELECT Name FROM Spells WHERE characterType = " + characterType);
+            rs = ps.executeQuery();
+                rsMD = rs.getMetaData();
+                column = rsMD.getColumnCount();
+                while(rs.next() == true){
+                    for(int n = 1; n <= column; n++){
+                        S = rs.getString(n);
+                        B = B.append(S).append("\n");
+                        jTextArea1.setText(B.toString());
+                    }
+                }
+            }
         } catch (SQLException ex) {
             Logger.getLogger(jpCharacters.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -576,6 +646,7 @@ public class jpCharacters extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -585,7 +656,9 @@ public class jpCharacters extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextPane jTextPane1;
     private javax.swing.JTextPane jTextPane2;
