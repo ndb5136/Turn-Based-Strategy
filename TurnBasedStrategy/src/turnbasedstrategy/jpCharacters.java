@@ -25,6 +25,7 @@ public class jpCharacters extends javax.swing.JPanel {
     // Declare character name and stats variables
     int ID;
     static String characterName;
+    int characterType;
     double physicalAttack;
     double specialAttack;
     double physicalDefense;
@@ -359,6 +360,11 @@ public class jpCharacters extends javax.swing.JPanel {
             S = rs.getString(1);
             ID = Integer.parseInt(S);
             
+            ps = con.prepareStatement("SELECT characterType FROM defaultCharacters WHERE characterName = '" + characterName + "';");
+            rs = ps.executeQuery();
+            S = rs.getString(1);
+            characterType = Integer.parseInt(S); 
+            
             ps = con.prepareStatement("SELECT health FROM defaultCharacters WHERE characterName = '" + characterName + "';");
             rs = ps.executeQuery();
             S = rs.getString(1);
@@ -429,6 +435,11 @@ public class jpCharacters extends javax.swing.JPanel {
             rs = ps.executeQuery();
             S = rs.getString(1);
             ID = Integer.parseInt(S);
+            
+            ps = con.prepareStatement("SELECT characterType FROM defaultCharacters WHERE characterName = '" + characterName + "';");
+            rs = ps.executeQuery();
+            S = rs.getString(1);
+            characterType = Integer.parseInt(S); 
             
             ps = con.prepareStatement("SELECT health FROM characters WHERE ID = " + ID + ";");
             rs = ps.executeQuery();
@@ -536,8 +547,8 @@ public class jpCharacters extends javax.swing.JPanel {
             ps.close();
             
             if(x == 0 && y == 0){    
-                ps = con.prepareStatement("INSERT INTO characters (playerID, characterName, health, mana, attack, specialAttack, defense, specialDefense, speed, exp) VALUES ("
-                + jpPlayer.playerID + ", '" + characterName + "', " + health + ", " + mana + ", " + physicalAttack + ", " + specialAttack + ", " + physicalDefense + ", " + specialDefense + ", " + speed + ", " + exp + ");");
+                ps = con.prepareStatement("INSERT INTO characters (playerID, characterType, characterName, health, mana, attack, specialAttack, defense, specialDefense, speed, exp) VALUES ("
+                + jpPlayer.playerID + ", '" + characterType + ", '" + characterName + "', " + health + ", " + mana + ", " + physicalAttack + ", " + specialAttack + ", " + physicalDefense + ", " + specialDefense + ", " + speed + ", " + exp + ");");
                 ps.executeUpdate();
                 ps.close();
                 JOptionPane.showMessageDialog(frame, "Player Saved","Ready to Play", JOptionPane.INFORMATION_MESSAGE);

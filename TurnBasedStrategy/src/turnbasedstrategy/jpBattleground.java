@@ -33,6 +33,7 @@ public class jpBattleground extends javax.swing.JPanel {
 
     int ID;
     String characterName;
+    int characterType;
     double physicalAttack;
     double specialAttack;
     double physicalDefense;
@@ -285,6 +286,11 @@ public class jpBattleground extends javax.swing.JPanel {
             rs = ps.executeQuery();
             S = rs.getString(1);
             ID = Integer.parseInt(S);
+            
+            ps = con.prepareStatement("SELECT characterType FROM defaultCharacters WHERE characterName = '" + characterName + "';");
+            rs = ps.executeQuery();
+            S = rs.getString(1);
+            characterType = Integer.parseInt(S); 
 
             ps = con.prepareStatement("SELECT health FROM characters WHERE ID = " + ID + ";");
             rs = ps.executeQuery();

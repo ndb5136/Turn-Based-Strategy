@@ -39,7 +39,7 @@ public class BattleGround extends javax.swing.JFrame {
         BufferedImageLoader loader = new BufferedImageLoader();
         BufferedImage spriteSheet = null;
         try {
-            spriteSheet = loader.loadImage("Knight.png");
+            spriteSheet = loader.loadImage("turnbasedstrategy/Knight.png");
         } catch (IOException ex) {
             Logger.getLogger(BattleGround.class.getName()).log(Level.SEVERE, null, ex);
         }
