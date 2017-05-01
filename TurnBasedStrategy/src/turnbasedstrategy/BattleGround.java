@@ -93,8 +93,8 @@ public class BattleGround extends javax.swing.JFrame {
     public void connectPlayers()
     {
         
-        playerOne.setOpponentStream(playerTwo);
-        playerTwo.setOpponentStream(playerOne);
+        //playerOne.setOpponentStream(playerTwo);
+        //playerTwo.setOpponentStream(playerOne);
         
     }
     

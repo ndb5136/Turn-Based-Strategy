@@ -21,12 +21,12 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 /**
  * Class for the login page of the game.
  * 
- * @author  Cody Zerbe      4/3/17 - Created the file and most of the functionality
- *          Nick Beliveau   4/5/17 - Began commenting and renamed variables of visual components
- *                    Notes : Confused about the loop on line 177. Is this to get multiple results with the same name?
+ * @author  Cody Zerbe      
  */
 public class jpLogin extends javax.swing.JPanel {
 
+    
+    
     //Database variables
     DBConnection connect = new DBConnection();
     Connection con = connect.connectToDB();
@@ -38,7 +38,7 @@ public class jpLogin extends javax.swing.JPanel {
     ResultSet rs;
     ResultSetMetaData rsMD;
     int column;
-    String S;               //TODO Can we come up with a more meaningful name for this?
+    String S;               
     JFrame frame;
     
     

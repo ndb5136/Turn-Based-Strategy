@@ -107,7 +107,7 @@ public class Client implements Runnable
             //Control for the loop in the communicate function
             boolean control = true;
             
-    
+            /**
             do
             {
                 action = getAction();
@@ -122,6 +122,7 @@ public class Client implements Runnable
             }while(control == true);
             
             closeClient();
+            */
             
         } 
         catch (IOException ex) 
