@@ -76,7 +76,16 @@ public class ClassAnimations extends JPanel{
                     sprites.add(ss.grabSprite(450, 450, 63, 63)); 
                     }
                 else if(pos == "r"){
-                    
+                    sprites.clear();
+
+                    sprites.add(ss.grabSprite(0, 325, 60, 60));
+                    sprites.add(ss.grabSprite(63, 325, 60, 60));
+                    sprites.add(ss.grabSprite(126, 325, 60, 60));
+                    sprites.add(ss.grabSprite(190, 325, 60, 60));
+                    sprites.add(ss.grabSprite(260, 325, 60, 60));
+                    sprites.add(ss.grabSprite(320, 325, 60, 60));
+                    sprites.add(ss.grabSprite(385, 325, 60, 60));
+                    sprites.add(ss.grabSprite(450, 325, 60, 60)); 
                 }
             }
             else if (aType == "cast")
