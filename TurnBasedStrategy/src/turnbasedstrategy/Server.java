@@ -201,7 +201,9 @@ public class Server
                     } 
                     catch (ClassNotFoundException | IOException ex) 
                     {
-                        Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+                        //Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+                        System.err.println("Client Disconnected");
+                        break;
                     }
                 }while(control);
         }
