@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import turnbasedstrategy.Server.clientThread;
 
 /**
@@ -43,6 +44,8 @@ public class jpBattleground extends javax.swing.JPanel {
     double health;
     int exp;
     int level;
+    
+    Player playerOne, playerTwo;
 
     PreparedStatement ps;
     ResultSet rs;
@@ -59,9 +62,9 @@ public class jpBattleground extends javax.swing.JPanel {
         
         jPanel1.setVisible(false);
         
-        jTextPane1.setText(player1);
+        jtpPlayerOneName.setText(player1);
         jTextPane2.setText(character1);
-        jTextPane3.setText(player2);
+        jtpPlayerTwoName.setText(player2);
         jTextPane4.setText(character2);
         
         characterName = character1;
@@ -72,10 +75,13 @@ public class jpBattleground extends javax.swing.JPanel {
 }
     public jpBattleground(clientThread pOne) 
     {
+        initComponents();
+        
         threadPlayerOne = pOne;
         full = false;
+        playerOne = pOne.passPlayer();
         
-        initComponents();
+
     }
     
     public void getPlayerTwo(clientThread pTwo)
@@ -84,19 +90,24 @@ public class jpBattleground extends javax.swing.JPanel {
         
         threadPlayerTwo = pTwo;
         full = true;
+        playerTwo = pTwo.passPlayer();
         
-        connectPlayers();
-        
-        System.out.println("Got past ConnectPlayers()");
+        displayPlayers();
         
         //playGame();
+    }
+    
+    public void displayPlayers()
+    {
+        jtpPlayerOneName.setText(playerOne.getName());
+        jtpPlayerTwoName.setText(playerTwo.getName());
     }
     
     public void connectPlayers()
     {
         
-        threadPlayerOne.setOpponentStream(threadPlayerTwo);
-        threadPlayerTwo.setOpponentStream(threadPlayerOne);
+        //threadPlayerOne.setOpponentStream(threadPlayerTwo);
+        //threadPlayerTwo.setOpponentStream(threadPlayerOne);
         
     }
 
@@ -117,11 +128,11 @@ public class jpBattleground extends javax.swing.JPanel {
         jProgressBar3 = new javax.swing.JProgressBar();
         jProgressBar4 = new javax.swing.JProgressBar();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
+        jtpPlayerOneName = new javax.swing.JTextPane();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTextPane2 = new javax.swing.JTextPane();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTextPane3 = new javax.swing.JTextPane();
+        jtpPlayerTwoName = new javax.swing.JTextPane();
         jScrollPane5 = new javax.swing.JScrollPane();
         jTextPane4 = new javax.swing.JTextPane();
         jPanel1 = new javax.swing.JPanel();
@@ -143,11 +154,11 @@ public class jpBattleground extends javax.swing.JPanel {
 
         jProgressBar1.setBorderPainted(false);
 
-        jScrollPane2.setViewportView(jTextPane1);
+        jScrollPane2.setViewportView(jtpPlayerOneName);
 
         jScrollPane3.setViewportView(jTextPane2);
 
-        jScrollPane4.setViewportView(jTextPane3);
+        jScrollPane4.setViewportView(jtpPlayerTwoName);
 
         jScrollPane5.setViewportView(jTextPane4);
 
@@ -213,7 +224,7 @@ public class jpBattleground extends javax.swing.JPanel {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(jScrollPane2)
                                 .addComponent(jProgressBar2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jProgressBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jProgressBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING))
                             .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
@@ -402,11 +413,11 @@ public class jpBattleground extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextPane jTextPane1;
     private javax.swing.JTextPane jTextPane2;
-    private javax.swing.JTextPane jTextPane3;
     private javax.swing.JTextPane jTextPane4;
     private javax.swing.JTextPane jTextPane5;
     private javax.swing.JTextPane jTextPane6;
+    private javax.swing.JTextPane jtpPlayerOneName;
+    private javax.swing.JTextPane jtpPlayerTwoName;
     // End of variables declaration//GEN-END:variables
 }

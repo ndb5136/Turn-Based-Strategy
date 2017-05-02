@@ -19,6 +19,8 @@ public class jpPlayer extends javax.swing.JPanel {
 
     DBConnection connect = new DBConnection();
     Connection con = connect.connectToDB();
+    Client client;
+    Player player;
     
     static int playerID;
     static String username;
@@ -66,6 +68,8 @@ public class jpPlayer extends javax.swing.JPanel {
             jButton6.setEnabled(false);
         }
         
+        client = new Client(username, characterName);
+        client.connectToServer();
     }
 
     /**
@@ -225,9 +229,13 @@ public class jpPlayer extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        Client client = new Client(username, characterName);
-        client.connectToServer();
         
+        this.getTopLevelAncestor().setVisible(false);
+        client.sendAction(new Action("Find Game"));
+        
+        jpBattleground battle = new jpBattleground();
+        battle.setSize(500, 400);
+        battle.setVisible(true);
     }//GEN-LAST:event_jButton6ActionPerformed
 
     public void levelUp(){

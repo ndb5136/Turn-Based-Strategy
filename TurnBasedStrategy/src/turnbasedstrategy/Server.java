@@ -121,6 +121,7 @@ public class Server
         protected ObjectOutputStream inGameOutput = null;
         protected ObjectInputStream inGameInput = null;
         protected Socket clientSocket = null;
+        protected Player player;
         
         private clientThread[] threads;
         private int maxClientsCount;
@@ -138,23 +139,7 @@ public class Server
             this.threads = threads;
             maxClientsCount = threads.length;
         }
-        
-        public void setOpponentStream(clientThread opponent)
-        {
-            
-            try 
-            {
-                System.out.println("Got into set Opponent Stream");
-                inGameInput = new ObjectInputStream(opponent.clientSocket.getInputStream());
-                inGameOutput = new ObjectOutputStream(opponent.clientSocket.getOutputStream());
-                System.out.println("Set the Opponent's Streams");
-            } 
-            catch (IOException ex) 
-            {
-                Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        
+                
         
         public void findGame()
         {            
@@ -172,11 +157,17 @@ public class Server
             
         }
         
+        public Player passPlayer()
+        {
+            return player;
+        }
+        
         public Player getPlayer()
         {
             try
             {
-                return (Player) input.readObject();
+                player = (Player) input.readObject();
+                return player;
             } 
             catch (ClassNotFoundException | IOException ex) 
             {

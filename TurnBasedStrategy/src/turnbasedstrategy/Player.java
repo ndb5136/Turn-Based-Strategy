@@ -1,6 +1,7 @@
 package turnbasedstrategy;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  *
@@ -10,6 +11,9 @@ public class Player implements Serializable
 {
     private String name;
     private String playerCharacter;
+    private int level;
+    private double health, mana, attack, spAttack, defense, spDefense, speed;
+    ArrayList<Action> moveSet;
     
     public Player()
     {
