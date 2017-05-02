@@ -181,6 +181,7 @@ public class jpCharacters extends javax.swing.JPanel {
 
         jLabel9.setText("Move Set:");
 
+        jTextArea1.setEditable(false);
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane9.setViewportView(jTextArea1);
@@ -302,6 +303,7 @@ public class jpCharacters extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        B.setLength(0);
         jpNewCharacter characters = new jpNewCharacter();
         characters.setVisible(true);
         JDialog jdCharacters = new JDialog();
@@ -311,6 +313,7 @@ public class jpCharacters extends javax.swing.JPanel {
         jdCharacters.setSize(400, 350);
         jdCharacters.setModal(true);
         jdCharacters.setVisible(true);
+        
         characterName = jpNewCharacter.characterName;
 
         jButton3.setEnabled(true);
@@ -318,6 +321,7 @@ public class jpCharacters extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        B.setLength(0);
         jpLoadCharacter characters = new jpLoadCharacter();
         characters.setVisible(true);
         JDialog jdCharacters = new JDialog();
@@ -441,7 +445,7 @@ public class jpCharacters extends javax.swing.JPanel {
             jTextPane1.setText(S);
             
             if (characterType == 1 || characterType == 2 || characterType == 4) {
-                ps = con.prepareStatement("SELECT Name FROM Physical Attack WHERE characterType = " + characterType);
+                ps = con.prepareStatement("SELECT Name FROM PhysAttk WHERE characterType = " + characterType);
                 rs = ps.executeQuery();
                 rsMD = rs.getMetaData();
                 column = rsMD.getColumnCount();
@@ -553,7 +557,7 @@ public class jpCharacters extends javax.swing.JPanel {
             jTextPane1.setText(S);
             
             if(characterType == 1 || characterType == 2 || characterType == 4){
-            ps = con.prepareStatement("SELECT Name FROM Physical Attack WHERE characterType = " + characterType);
+            ps = con.prepareStatement("SELECT Name FROM PhysAttk WHERE characterType = " + characterType);
             rs = ps.executeQuery();
                 rsMD = rs.getMetaData();
                 column = rsMD.getColumnCount();
