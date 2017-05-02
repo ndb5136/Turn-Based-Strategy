@@ -27,8 +27,6 @@ public class ClassAnimations extends JPanel{
    ArrayList<BufferedImage> sprites = new ArrayList<BufferedImage>();
    Animator animate;
    
-   
-   
     public ClassAnimations()
     {
 
@@ -78,14 +76,14 @@ public class ClassAnimations extends JPanel{
                 else if(pos == "r"){
                     sprites.clear();
 
-                    sprites.add(ss.grabSprite(0, 325, 60, 60));
-                    sprites.add(ss.grabSprite(63, 325, 60, 60));
-                    sprites.add(ss.grabSprite(126, 325, 60, 60));
-                    sprites.add(ss.grabSprite(190, 325, 60, 60));
-                    sprites.add(ss.grabSprite(260, 325, 60, 60));
-                    sprites.add(ss.grabSprite(320, 325, 60, 60));
-                    sprites.add(ss.grabSprite(385, 325, 60, 60));
-                    sprites.add(ss.grabSprite(450, 325, 60, 60)); 
+                    sprites.add(ss.grabSprite(0, 325, 63, 60));
+                    sprites.add(ss.grabSprite(63, 325, 63, 60));
+                    sprites.add(ss.grabSprite(126, 325, 63, 60));
+                    sprites.add(ss.grabSprite(190, 325, 63, 60));
+                    sprites.add(ss.grabSprite(260, 325, 65, 60));
+                    sprites.add(ss.grabSprite(320, 325, 65, 60));
+                    sprites.add(ss.grabSprite(385, 325, 63, 60));
+                    sprites.add(ss.grabSprite(450, 325, 63, 60));
                 }
             }
             else if (aType == "cast")
@@ -103,33 +101,57 @@ public class ClassAnimations extends JPanel{
             {
                 if (pos == "l")
                 {
-                    
+                    sprites.clear();
+                    sprites.add(ss.grabSprite(0, 1288, 63, 55));
+                    sprites.add(ss.grabSprite(63, 1288, 63, 55));
+                    sprites.add(ss.grabSprite(126, 1288, 63, 55));
+                    sprites.add(ss.grabSprite(190, 1288, 63, 55));
+                    sprites.add(ss.grabSprite(260, 1288, 65, 55));
+                    sprites.add(ss.grabSprite(320, 1288, 65, 55));
                 }
                 else if (pos == "r")
                 {
-                    
+                    sprites.clear();
+                    sprites.add(ss.grabSprite(0, 1288, 63, 55));
+                    sprites.add(ss.grabSprite(63, 1288, 63, 55));
+                    sprites.add(ss.grabSprite(126, 1288, 63, 55));
+                    sprites.add(ss.grabSprite(190, 1288, 63, 55));
+                    sprites.add(ss.grabSprite(260, 1288, 65, 55));
+                    sprites.add(ss.grabSprite(320, 1288, 65, 55));
                 }
             }
             
         }
         else if (cType == "Assassin")
-        {
+        { 
              try {
-            spriteSheet = loader.loadImage("Assassin.png");
+           spriteSheet = loader.loadImage("Assassin.png");
         } catch (IOException ex) {
             Logger.getLogger(BattleGround.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-            
+             ss = new SpriteSheet(spriteSheet);
             
             if (aType == "attack"){
                 if (pos == "l")
                 {
-                    
+                    sprites.clear();
+                    sprites.add(ss.grabSprite(15, 970, 63, 55));
+                    sprites.add(ss.grabSprite(80, 970, 63, 55));
+                    sprites.add(ss.grabSprite(140, 970, 63, 55));
+                    sprites.add(ss.grabSprite(209, 970, 63, 55));
+                    sprites.add(ss.grabSprite(275, 970, 65, 55));
+                    sprites.add(ss.grabSprite(335, 970, 65, 55));
                 }
                 else if (pos == "r")
                 {
-                    
+                     sprites.clear();
+                    sprites.add(ss.grabSprite(5, 840, 63, 55));
+                    sprites.add(ss.grabSprite(70, 840, 63, 55));
+                    sprites.add(ss.grabSprite(140, 840, 63, 55));
+                    sprites.add(ss.grabSprite(190, 840, 63, 55));
+                    sprites.add(ss.grabSprite(250, 840, 65, 55));
+                    sprites.add(ss.grabSprite(320, 840, 65, 55));
                 }
             }
             else if (aType == "cast")
@@ -147,20 +169,36 @@ public class ClassAnimations extends JPanel{
             {
                 if (pos == "l")
                 {
-                    
+                   sprites.clear();
+                    sprites.add(ss.grabSprite(15, 135, 63, 55));
+                    sprites.add(ss.grabSprite(75, 135, 63, 55));
+                    sprites.add(ss.grabSprite(140, 135, 63, 55));
+                    sprites.add(ss.grabSprite(200, 135, 63, 55));
+                    sprites.add(ss.grabSprite(260, 135, 65, 55));
+                    sprites.add(ss.grabSprite(325, 135, 65, 55)); 
+                    sprites.add(ss.grabSprite(390, 135, 65, 55));
                 }
                 else if (pos == "r")
                 {
-                    
+                    sprites.clear();
+                    sprites.add(ss.grabSprite(15, 135, 63, 55));
+                    sprites.add(ss.grabSprite(75, 135, 63, 55));
+                    sprites.add(ss.grabSprite(140, 135, 63, 55));
+                    sprites.add(ss.grabSprite(200, 135, 63, 55));
+                    sprites.add(ss.grabSprite(260, 135, 65, 55));
+                    sprites.add(ss.grabSprite(325, 135, 65, 55)); 
+                    sprites.add(ss.grabSprite(390, 135, 65, 55));
                 }
             }
         }
         else if (cType == "Wizard")
         {
            
-                         try {
+          
+           try {
             spriteSheet = loader.loadImage("Wizard.png");
-        } catch (IOException ex) {
+               } 
+           catch (IOException ex) {
             Logger.getLogger(BattleGround.class.getName()).log(Level.SEVERE, null, ex);
         }
             ss = new SpriteSheet(spriteSheet);
@@ -182,23 +220,40 @@ public class ClassAnimations extends JPanel{
                   }
                   else if (pos == "r")
                   {
-                      
+                      sprites.clear();
+        
+        sprites.add(ss.grabSprite(0, 558, 63, 63));
+        sprites.add(ss.grabSprite(63, 558, 63, 63));
+        sprites.add(ss.grabSprite(126, 558, 63, 63));
+        sprites.add(ss.grabSprite(190, 558, 63, 63));
+        sprites.add(ss.grabSprite(260, 558, 65, 63));
+        sprites.add(ss.grabSprite(320, 558, 65, 63));
+        sprites.add(ss.grabSprite(385, 558, 63, 63));
+        sprites.add(ss.grabSprite(450, 558, 63, 63));
                   }
             }
             else if (aType == "cast")
             {
                 if (pos == "l")
                 {  
+         sprites.clear();   
         sprites.add(ss.grabSprite(0, 970, 63, 63));
         sprites.add(ss.grabSprite(63, 970, 63, 63));
         sprites.add(ss.grabSprite(126, 970, 63, 63));
         sprites.add(ss.grabSprite(190, 970, 63, 63));
         sprites.add(ss.grabSprite(260, 970, 65, 63));
         sprites.add(ss.grabSprite(320, 970, 65, 63));
+                 
                 }
                 else if (pos == "r")
                 {
-                    
+                   sprites.clear();   
+        sprites.add(ss.grabSprite(0, 838, 63, 63));
+        sprites.add(ss.grabSprite(63, 838, 63, 63));
+        sprites.add(ss.grabSprite(126, 838, 63, 63));
+        sprites.add(ss.grabSprite(190, 838, 63, 63));
+        sprites.add(ss.grabSprite(260, 838, 65, 63));
+        sprites.add(ss.grabSprite(320, 838, 65, 63));
                 }
                 
             }
@@ -206,11 +261,29 @@ public class ClassAnimations extends JPanel{
             {
                 if (pos == "l")
                 {
-                    
+                   sprites.clear();   
+        sprites.add(ss.grabSprite(0, 1290, 63, 52));
+        sprites.add(ss.grabSprite(70, 1290, 63, 52));
+        sprites.add(ss.grabSprite(140, 1290, 63, 52));
+        sprites.add(ss.grabSprite(200, 1290, 63, 52));
+        sprites.add(ss.grabSprite(260, 1290, 65, 52)); 
+        sprites.add(ss.grabSprite(200, 1290, 63, 52));
+        sprites.add(ss.grabSprite(140, 1290, 63, 52));
+        sprites.add(ss.grabSprite(70, 1290, 63, 52));
+        sprites.add(ss.grabSprite(0, 1290, 63, 52));
                 }
                 else if (pos == "r")
                 {
-                    
+                     sprites.clear();   
+        sprites.add(ss.grabSprite(0, 1290, 63, 52));
+        sprites.add(ss.grabSprite(70, 1290, 63, 52));
+        sprites.add(ss.grabSprite(140, 1290, 63, 52));
+        sprites.add(ss.grabSprite(200, 1290, 63, 52));
+        sprites.add(ss.grabSprite(260, 1290, 65, 52)); 
+        sprites.add(ss.grabSprite(200, 1290, 63, 52));
+        sprites.add(ss.grabSprite(140, 1290, 63, 52));
+        sprites.add(ss.grabSprite(70, 1290, 63, 52));
+        sprites.add(ss.grabSprite(0, 1290, 63, 52));
                 }
             }
         }
@@ -265,16 +338,43 @@ public class ClassAnimations extends JPanel{
             Logger.getLogger(BattleGround.class.getName()).log(Level.SEVERE, null, ex);
         }
  
-            
+            ss = new SpriteSheet(spriteSheet);
             
             if (aType == "attack"){
                 if (pos == "l")
                 {
+                     sprites.clear();
+                    sprites.add(ss.grabSprite(5, 1223, 63, 55));
+                    sprites.add(ss.grabSprite(70, 1223, 63, 55));
+                    sprites.add(ss.grabSprite(133, 1223, 63, 55));
+                    sprites.add(ss.grabSprite(200, 1223, 63, 55));
+                    sprites.add(ss.grabSprite(255, 1223, 65, 55));
+                    sprites.add(ss.grabSprite(325, 1223, 65, 55)); 
+                    sprites.add(ss.grabSprite(388, 1223, 65, 55));
+                    sprites.add(ss.grabSprite(454, 1223, 63, 55));
+                    sprites.add(ss.grabSprite(516, 1223, 63, 55));
+                    sprites.add(ss.grabSprite(580, 1223, 63, 55));
+                    sprites.add(ss.grabSprite(646, 1223, 63, 55));
+                    sprites.add(ss.grabSprite(710, 1223, 65, 55));
+                    sprites.add(ss.grabSprite(775, 1223, 65, 55));  
                     
                 }
                 else if (pos == "r")
                 {
-                    
+                   sprites.clear();
+                    sprites.add(ss.grabSprite(5, 1096, 63, 55));
+                    sprites.add(ss.grabSprite(70, 1096, 63, 55));
+                    sprites.add(ss.grabSprite(133, 1096, 63, 55));
+                    sprites.add(ss.grabSprite(200, 1096, 63, 55));
+                    sprites.add(ss.grabSprite(255, 1096, 65, 55));
+                    sprites.add(ss.grabSprite(325, 1096, 65, 55)); 
+                    sprites.add(ss.grabSprite(388, 1096, 65, 55));
+                    sprites.add(ss.grabSprite(454, 1096, 63, 55));
+                    sprites.add(ss.grabSprite(516, 1096, 63, 55));
+                    sprites.add(ss.grabSprite(580, 1096, 63, 55));
+                    sprites.add(ss.grabSprite(646, 1096, 63, 55));
+                    sprites.add(ss.grabSprite(710, 1096, 65, 55));
+                    sprites.add(ss.grabSprite(775, 1096, 65, 55));
                 }
             }
             else if (aType == "cast")
@@ -292,11 +392,30 @@ public class ClassAnimations extends JPanel{
             {
                 if (pos == "l")
                 {
-                    
+                     sprites.clear();
+                    sprites.add(ss.grabSprite(10, 1284, 63, 59));
+                    sprites.add(ss.grabSprite(70, 1284, 63, 59));
+                    sprites.add(ss.grabSprite(143, 1284, 63, 59));
+                    sprites.add(ss.grabSprite(205, 1284, 63, 59));
+                    sprites.add(ss.grabSprite(270, 1284, 65, 59));
+                    sprites.add(ss.grabSprite(205, 1284, 65, 59)); 
+                    sprites.add(ss.grabSprite(143, 1284, 65, 59));
+                    sprites.add(ss.grabSprite(70, 1284, 63, 59));
+                    sprites.add(ss.grabSprite(10, 1284, 63, 59));
+                   
                 }
                 else if (pos == "r")
                 {
-                    
+                    sprites.clear();
+                    sprites.add(ss.grabSprite(10, 1284, 63, 59));
+                    sprites.add(ss.grabSprite(70, 1284, 63, 59));
+                    sprites.add(ss.grabSprite(143, 1284, 63, 59));
+                    sprites.add(ss.grabSprite(205, 1284, 63, 59));
+                    sprites.add(ss.grabSprite(270, 1284, 65, 59));
+                    sprites.add(ss.grabSprite(205, 1284, 65, 59)); 
+                    sprites.add(ss.grabSprite(143, 1284, 65, 59));
+                    sprites.add(ss.grabSprite(70, 1284, 63, 59));
+                    sprites.add(ss.grabSprite(10, 1284, 63, 59));
                 }
             }
         }
