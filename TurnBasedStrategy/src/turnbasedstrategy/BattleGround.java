@@ -31,14 +31,20 @@ public class BattleGround extends javax.swing.JFrame {
 
         initComponents();
         JFrame frame = new JFrame();
+        frame.setSize(1000, 1000);
         
-        animate.playAnimation("attack", "Knight", "l");
         
-
+        animate.setAnimation("cast", "Wizard", "l");
+        
+        animate.runAnimation();
        
         frame.add(animate);
         animate.setVisible(true);
-
+        frame.setVisible(true);
+        
+        
+        
+        
 //        init();
     }
     

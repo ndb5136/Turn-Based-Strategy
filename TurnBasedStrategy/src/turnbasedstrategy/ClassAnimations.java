@@ -34,7 +34,14 @@ public class ClassAnimations extends JPanel{
 
     }
     
-    public void playAnimation(String a, String c, String p)
+    public void runAnimation()
+    {
+            animate = new Animator(sprites);
+            animate.setSpeed(150);
+            animate.play();
+    }
+    
+    public void setAnimation(String a, String c, String p)
     {
         aType = a;
         cType = c;
@@ -56,30 +63,43 @@ public class ClassAnimations extends JPanel{
         
             ss = new SpriteSheet(spriteSheet);
             if (aType == "attack"){
-            
-        
-        sprites.clear();
-        
-        sprites.add(ss.grabSprite(0, 450, 63, 63));
-        sprites.add(ss.grabSprite(63, 450, 63, 63));
-        sprites.add(ss.grabSprite(126, 450, 63, 63));
-        sprites.add(ss.grabSprite(190, 450, 63, 63));
-        sprites.add(ss.grabSprite(260, 450, 65, 63));
-        sprites.add(ss.grabSprite(320, 450, 65, 63));
-        sprites.add(ss.grabSprite(385, 450, 63, 63));
-        sprites.add(ss.grabSprite(450, 450, 63, 63));
-        
-            animate.setSpeed(150);
-            animate.play();
-        
+                if (pos == "l"){
+                    sprites.clear();
+
+                    sprites.add(ss.grabSprite(0, 450, 63, 63));
+                    sprites.add(ss.grabSprite(63, 450, 63, 63));
+                    sprites.add(ss.grabSprite(126, 450, 63, 63));
+                    sprites.add(ss.grabSprite(190, 450, 63, 63));
+                    sprites.add(ss.grabSprite(260, 450, 65, 63));
+                    sprites.add(ss.grabSprite(320, 450, 65, 63));
+                    sprites.add(ss.grabSprite(385, 450, 63, 63));
+                    sprites.add(ss.grabSprite(450, 450, 63, 63)); 
+                    }
+                else if(pos == "r"){
+                    
+                }
             }
             else if (aType == "cast")
             {
-                
+                if (pos == "l")
+                {
+                    
+                }
+                else if (pos == "r")
+                {
+                    
+                }
             }
             else if (aType == "block")
             {
-                
+                if (pos == "l")
+                {
+                    
+                }
+                else if (pos == "r")
+                {
+                    
+                }
             }
             
         }
@@ -94,15 +114,36 @@ public class ClassAnimations extends JPanel{
             
             
             if (aType == "attack"){
-                
+                if (pos == "l")
+                {
+                    
+                }
+                else if (pos == "r")
+                {
+                    
+                }
             }
             else if (aType == "cast")
             {
-                
+                if (pos == "l")
+                {
+                    
+                }
+                else if (pos == "r")
+                {
+                    
+                }
             }
             else if (aType == "block")
             {
-                
+                if (pos == "l")
+                {
+                    
+                }
+                else if (pos == "r")
+                {
+                    
+                }
             }
         }
         else if (cType == "Wizard")
@@ -117,7 +158,8 @@ public class ClassAnimations extends JPanel{
             
             if (aType == "attack"){
                 
-                        
+                  if (pos == "l")
+                  {
         sprites.clear();
         
         sprites.add(ss.grabSprite(0, 450, 63, 63));
@@ -128,15 +170,39 @@ public class ClassAnimations extends JPanel{
         sprites.add(ss.grabSprite(320, 450, 65, 63));
         sprites.add(ss.grabSprite(385, 450, 63, 63));
         sprites.add(ss.grabSprite(450, 450, 63, 63));
-                
+                  }
+                  else if (pos == "r")
+                  {
+                      
+                  }
             }
             else if (aType == "cast")
             {
+                if (pos == "l")
+                {  
+        sprites.add(ss.grabSprite(0, 970, 63, 63));
+        sprites.add(ss.grabSprite(63, 970, 63, 63));
+        sprites.add(ss.grabSprite(126, 970, 63, 63));
+        sprites.add(ss.grabSprite(190, 970, 63, 63));
+        sprites.add(ss.grabSprite(260, 970, 65, 63));
+        sprites.add(ss.grabSprite(320, 970, 65, 63));
+                }
+                else if (pos == "r")
+                {
+                    
+                }
                 
             }
             else if (aType == "block")
             {
-                
+                if (pos == "l")
+                {
+                    
+                }
+                else if (pos == "r")
+                {
+                    
+                }
             }
         }
         else if (cType == "Mage")
@@ -150,15 +216,36 @@ public class ClassAnimations extends JPanel{
             
             
             if (aType == "attack"){
-                
+                if (pos == "l")
+                {
+                    
+                }
+                else if (pos == "r")
+                {
+                    
+                }
             }
             else if (aType == "cast")
             {
-                
+                if (pos == "l")
+                {
+                    
+                }
+                else if (pos == "r")
+                {
+                    
+                }
             }
             else if (aType == "block")
             {
-                
+                if (pos == "l")
+                {
+                    
+                }
+                else if (pos == "r")
+                {
+                    
+                }
             }
         }
         else if (cType == "Ranger")
@@ -172,15 +259,36 @@ public class ClassAnimations extends JPanel{
             
             
             if (aType == "attack"){
-                
+                if (pos == "l")
+                {
+                    
+                }
+                else if (pos == "r")
+                {
+                    
+                }
             }
             else if (aType == "cast")
             {
-                
+                if (pos == "l")
+                {
+                    
+                }
+                else if (pos == "r")
+                {
+                    
+                }
             }
             else if (aType == "block")
             {
-                
+                if (pos == "l")
+                {
+                    
+                }
+                else if (pos == "r")
+                {
+                    
+                }
             }
         }
     }
@@ -188,9 +296,7 @@ public class ClassAnimations extends JPanel{
     
    @Override
         public void paint(Graphics g){
-            animate = new Animator(sprites);
-        animate.setSpeed(150);
-        animate.play();
+
             
             dbImage = createImage(getWidth(), getHeight());
             dbg = dbImage.getGraphics();
