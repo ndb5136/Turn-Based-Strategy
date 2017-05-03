@@ -233,9 +233,16 @@ public class jpPlayer extends javax.swing.JPanel {
         this.getTopLevelAncestor().setVisible(false);
         client.sendAction(new Action("Find Game"));
         
-        jpBattleground battle = new jpBattleground();
-        battle.setSize(500, 400);
-        battle.setVisible(true);
+        jpBattleground battleground = new jpBattleground();
+        battleground.setVisible(true);
+        JDialog jdBattleground = new JDialog();
+        JPanel Battleground = new jpBattleground();
+        jdBattleground.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        jdBattleground.add(Battleground);
+        jdBattleground.setSize(800, 630);
+        jdBattleground.setModal(true);
+        jdBattleground.setVisible(true);
+
     }//GEN-LAST:event_jButton6ActionPerformed
 
     public void levelUp(){

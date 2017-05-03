@@ -33,7 +33,6 @@ public class jpBattleground extends javax.swing.JPanel {
     private boolean full;
 
     int ID;
-    String characterName;
     int characterType;
     double physicalAttack;
     double specialAttack;
@@ -67,10 +66,12 @@ public class jpBattleground extends javax.swing.JPanel {
         jtpPlayerTwoName.setText(player2);
         jTextPane4.setText(character2);
         
-        characterName = character1;
-        loadCharacter();
-        characterName = character2;
-        loadCharacter();
+        
+        
+        //characterName = character1;
+        //loadCharacter();
+        //characterName = character2;
+        //loadCharacter();
         
 }
     public jpBattleground(clientThread pOne) 
@@ -290,8 +291,10 @@ public class jpBattleground extends javax.swing.JPanel {
         }
     }
 
-    public void loadCharacter() {
+    public void loadCharacter(String charName) {
 
+        String characterName = charName;
+        
         try {
             ps = con.prepareStatement("SELECT ID FROM characters WHERE characterName = '" + characterName + "';");
             rs = ps.executeQuery();
