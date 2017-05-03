@@ -9,13 +9,14 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import turnbasedstrategy.Server.clientThread;
 
 /**
  *
  * @author eih5176
  */
-public class BattleGround extends javax.swing.JFrame {
+public class BattleGround extends JFrame {
 
     private clientThread playerOne, playerTwo;
     private boolean full;
@@ -29,19 +30,15 @@ public class BattleGround extends javax.swing.JFrame {
      */
     public BattleGround() {
 
-        initComponents();
-        JFrame frame = new JFrame();
-        frame.setSize(1000, 1000);
-        
+//        initComponents();
         
         animate.setAnimation("block", "Wizard", "l");
-        
+        setSize(500,500);
         animate.runAnimation();
-       
-        frame.add(animate);
+        add(animate);
         animate.setVisible(true);
-        frame.setVisible(true);
-        
+        setVisible(true);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
         
         
         
