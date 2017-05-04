@@ -9,9 +9,8 @@ package turnbasedstrategy;
 public class TurnBasedStrategy {
 
     public static void main(String[] args) {
-        jfLogin login = new jfLogin();
         
-        login.setVisible(true);
+        Client client = new Client();
     }
     
 }

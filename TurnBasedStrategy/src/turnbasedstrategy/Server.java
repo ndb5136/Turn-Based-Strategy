@@ -48,6 +48,7 @@ public class Server
             if (clientSocket!= null)
             {
                 serverInput = new ObjectInputStream(clientSocket.getInputStream());
+                serverOutput = new ObjectOutputStream(clientSocket.getOutputStream());
             }
         }
         catch(IOException e)
@@ -76,13 +77,12 @@ public class Server
                         System.out.println("client " +clientnumber);
                         break;
                     }
-                    System.out.println("Max : " + maxClientCount + "\nCurrent Number : " + i);
                 }
                 //if the room has 2 players, let the client know the room is full
                 if(i >= maxClientCount)
                 {
                     Action action = new Action("Server is currently full");
-                    serverOutput = new ObjectOutputStream(clientSocket.getOutputStream());
+                    
                     serverOutput.writeObject(action);
                 }                
             } 

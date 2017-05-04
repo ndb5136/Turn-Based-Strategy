@@ -36,15 +36,16 @@ public class Client implements Runnable
     private static String username;
     private static String characterName;
     
-    
+    private jfLogin login = new jfLogin();
     
     /**
      * Constructor for the Client class
      */
     public Client()
     {
-        username="Paul";
-        characterName="Archsassin";
+        
+        openLogin();
+        openGame();
         
     }
     public Client(String n, String c)
@@ -52,6 +53,26 @@ public class Client implements Runnable
         username=n;
         characterName=c;
         
+    }
+    
+    public void openGame()
+    {
+        boolean control = true;
+        while(control)
+        {
+            System.out.print("");       //this is the weirdest error I've ever seen
+            if(!login.isVisible())
+            {
+                control = false;
+                jfPlayer playerFrame = new jfPlayer();
+                playerFrame.setVisible(true);
+            }
+        }
+    }
+    
+    public void openLogin()
+    {        
+        login.setVisible(true);       
     }
     
     public Action getAction()

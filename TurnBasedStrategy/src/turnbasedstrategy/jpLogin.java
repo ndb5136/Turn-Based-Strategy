@@ -41,6 +41,8 @@ public class jpLogin extends javax.swing.JPanel {
     String S;               
     JFrame frame;
     
+    private boolean authentication;
+    
     
     /**
      * Creates new form jpLogin
@@ -159,11 +161,11 @@ public class jpLogin extends javax.swing.JPanel {
      */
     private void jbLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLoginActionPerformed
         
-        logIn();
+        authentication = logIn();
 
     }//GEN-LAST:event_jbLoginActionPerformed
 
-    public void logIn()
+    public boolean logIn()
     {
         try 
         {
@@ -178,8 +180,8 @@ public class jpLogin extends javax.swing.JPanel {
             column = rsMD.getColumnCount();
             
             
-            int y = 0;      //TODO Can we get a more meaningful name for the loop control?
-            //TODO Make comment for this loop
+            int y = 0;     
+            
             while(rs.next() == true)
             {
                 for(int n = 1; n <= column; n++)
@@ -211,16 +213,17 @@ public class jpLogin extends javax.swing.JPanel {
                 this.getTopLevelAncestor().setVisible(false);
                 ps.close();
                 con.close();
-                jfPlayer player = new jfPlayer();
-                player.setVisible(true);
+                return true;
+                
             }
         } catch (SQLException ex) {
             Logger.getLogger(jpLogin.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return false;
     }
     
     private void tfPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfPasswordActionPerformed
-        logIn();
+        authentication = logIn();
     }//GEN-LAST:event_tfPasswordActionPerformed
 
 
@@ -232,4 +235,11 @@ public class jpLogin extends javax.swing.JPanel {
     private javax.swing.JPasswordField tfPassword;
     private javax.swing.JTextField tfUsername;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * @return the authentication
+     */
+    public boolean isAuthentication() {
+        return authentication;
+    }
 }
