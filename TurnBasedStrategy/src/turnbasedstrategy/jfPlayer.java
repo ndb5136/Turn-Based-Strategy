@@ -11,11 +11,19 @@ package turnbasedstrategy;
  */
 public class jfPlayer extends javax.swing.JFrame {
 
+    
+    private Client client;
     /**
      * Creates new form jfPlayer
      */
     public jfPlayer() {
         initComponents();
+        this.client = client;
+    }
+    
+    public Client getClient()
+    {
+        return client;
     }
 
     /**

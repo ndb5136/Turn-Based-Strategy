@@ -45,6 +45,8 @@ public class jpCharacters extends javax.swing.JPanel {
     JFrame frame;
     StringBuilder B = new StringBuilder();
     
+    private Player player = new Player();
+    
     /**
      * Creates new form Characters
      */
@@ -56,6 +58,14 @@ public class jpCharacters extends javax.swing.JPanel {
         }
     }  
 
+    
+    
+    
+    public Player getPlayer()
+    {
+        return player;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -341,6 +351,8 @@ public class jpCharacters extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
+    
+    
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         if(characterName == null){
             JOptionPane.showMessageDialog(frame, "Please choose a character.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -378,63 +390,75 @@ public class jpCharacters extends javax.swing.JPanel {
         try {
             jTextField1.setText(characterName);
             
+            player.setName(characterName);
+            
             ps = con.prepareStatement("SELECT ID FROM defaultCharacters WHERE characterName = '" + characterName + "';");
             rs = ps.executeQuery();
             S = rs.getString(1);
             ID = Integer.parseInt(S);
+            player.setID(ID);
             
             ps = con.prepareStatement("SELECT characterType FROM defaultCharacters WHERE characterName = '" + characterName + "';");
             rs = ps.executeQuery();
             S = rs.getString(1);
             characterType = Integer.parseInt(S); 
+            player.setCharacterType(characterType);
             
             ps = con.prepareStatement("SELECT health FROM defaultCharacters WHERE characterName = '" + characterName + "';");
             rs = ps.executeQuery();
             S = rs.getString(1);
             health = Double.parseDouble(S);
             jTextPane2.setText(S);
+            player.setHealth(health);
             
             ps = con.prepareStatement("SELECT mana FROM defaultCharacters WHERE characterName = '" + characterName + "';");
             rs = ps.executeQuery();
             S = rs.getString(1);
             mana = Double.parseDouble(S);
             jTextPane3.setText(S);
+            player.setMana(mana);
             
             ps = con.prepareStatement("SELECT attack FROM defaultCharacters WHERE characterName = '" + characterName + "';");
             rs = ps.executeQuery();
             S = rs.getString(1);
             physicalAttack = Double.parseDouble(S);
             jTextPane4.setText(S);
+            player.setAttack(physicalAttack);
             
             ps = con.prepareStatement("SELECT specialAttack FROM defaultCharacters WHERE characterName = '" + characterName + "';");
             rs = ps.executeQuery();
             S = rs.getString(1);
             specialAttack = Double.parseDouble(S);
             jTextPane5.setText(S);
+            player.setSpAttack(specialAttack);
             
             ps = con.prepareStatement("SELECT defense FROM defaultCharacters WHERE characterName = '" + characterName + "';");
             rs = ps.executeQuery();
             S = rs.getString(1);
             physicalDefense = Double.parseDouble(S);
             jTextPane6.setText(S);
+            player.setDefense(physicalDefense);
             
             ps = con.prepareStatement("SELECT specialDefense FROM defaultCharacters WHERE characterName = '" + characterName + "';");
             rs = ps.executeQuery();
             S = rs.getString(1);
             specialDefense = Double.parseDouble(S);
             jTextPane7.setText(S);
+            player.setSpDefense(specialDefense);
             
             ps = con.prepareStatement("SELECT speed FROM defaultCharacters WHERE characterName = '" + characterName + "';");
             rs = ps.executeQuery();
             S = rs.getString(1);
             speed = Double.parseDouble(S);
             jTextPane8.setText(S);
+            player.setSpeed(speed);
             
             ps = con.prepareStatement("SELECT exp FROM defaultCharacters WHERE characterName = '" + characterName + "';");
             rs = ps.executeQuery();
             S = rs.getString(1);
             exp = Integer.parseInt(S);
             jProgressBar1.setValue(exp);
+            player.setExperience(exp);
             
             level = 1;
             jProgressBar1.setMaximum(100);
@@ -480,57 +504,68 @@ public class jpCharacters extends javax.swing.JPanel {
         try {
             jTextField1.setText(characterName);
             
+            player.setName(characterName);
+            
             ps = con.prepareStatement("SELECT ID FROM characters WHERE characterName = '" + characterName + "';");
             rs = ps.executeQuery();
             S = rs.getString(1);
             ID = Integer.parseInt(S);
+            player.setID(ID);
             
             ps = con.prepareStatement("SELECT characterType FROM characters WHERE characterName = '" + characterName + "';");
             rs = ps.executeQuery();
             S = rs.getString(1);
             characterType = Integer.parseInt(S); 
+            player.setCharacterType(characterType);
             
             ps = con.prepareStatement("SELECT health FROM characters WHERE ID = " + ID + ";");
             rs = ps.executeQuery();
             S = rs.getString(1);
             health = Double.parseDouble(S);
             jTextPane2.setText(S);
+            player.setHealth(health);
             
             ps = con.prepareStatement("SELECT mana FROM characters WHERE ID = " + ID + ";");
             rs = ps.executeQuery();
             S = rs.getString(1);
             mana = Double.parseDouble(S);
             jTextPane3.setText(S);
+            player.setMana(mana);
             
             ps = con.prepareStatement("SELECT attack FROM characters WHERE ID = " + ID + ";");
             rs = ps.executeQuery();
             S = rs.getString(1);
             physicalAttack = Double.parseDouble(S);
             jTextPane4.setText(S);
+            player.setAttack(physicalAttack);
             
             ps = con.prepareStatement("SELECT specialAttack FROM characters WHERE ID = " + ID + ";");
             rs = ps.executeQuery();
             S = rs.getString(1);
             specialAttack = Double.parseDouble(S);
             jTextPane5.setText(S);
+            player.setSpAttack(specialAttack);
             
             ps = con.prepareStatement("SELECT defense FROM characters WHERE ID = " + ID + ";");
             rs = ps.executeQuery();
             S = rs.getString(1);
             physicalDefense = Double.parseDouble(S);
             jTextPane6.setText(S);
+            player.setDefense(physicalDefense);
             
             ps = con.prepareStatement("SELECT specialDefense FROM characters WHERE ID = " + ID + ";");
             rs = ps.executeQuery();
             S = rs.getString(1);
             specialDefense = Double.parseDouble(S);
             jTextPane7.setText(S);
+            player.setSpDefense(specialDefense);
             
             ps = con.prepareStatement("SELECT speed FROM characters WHERE ID = " + ID + ";");
             rs = ps.executeQuery();
             S = rs.getString(1);
             speed = Double.parseDouble(S);
             jTextPane8.setText(S);
+            player.setSpeed(speed);
             
             ps = con.prepareStatement("SELECT exp FROM characters WHERE ID = '" + ID + "';");
             rs = ps.executeQuery();

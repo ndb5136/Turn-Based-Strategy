@@ -19,8 +19,8 @@ public class jpPlayer extends javax.swing.JPanel {
 
     DBConnection connect = new DBConnection();
     Connection con = connect.connectToDB();
-    Client client;
     Player player;
+    Client client;
     
     static int playerID;
     static String username;
@@ -67,9 +67,6 @@ public class jpPlayer extends javax.swing.JPanel {
             jButton2.setEnabled(false);
             jButton6.setEnabled(false);
         }
-        
-        client = new Client(username, characterName);
-        client.connectToServer();
     }
 
     /**
@@ -196,12 +193,15 @@ public class jpPlayer extends javax.swing.JPanel {
         jpCharacters characters = new jpCharacters();
         characters.setVisible(true);
         JDialog jdCharacters = new JDialog();
-        JPanel Characters = new jpCharacters();
+        jpCharacters Characters = new jpCharacters();
         jdCharacters.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         jdCharacters.add(Characters);
         jdCharacters.setSize(500, 600);
         jdCharacters.setModal(true);
         jdCharacters.setVisible(true);
+
+        player = Characters.getPlayer();
+        System.out.println("Player:\n" + player);
         
         try {
             characterName = jpCharacters.characterName;
@@ -231,7 +231,8 @@ public class jpPlayer extends javax.swing.JPanel {
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         
         this.getTopLevelAncestor().setVisible(false);
-        client.sendAction(new Action("Find Game"));
+        Action action = new Action("Find Game");
+        client.sendAction(action);
         
         jpBattleground battleground = new jpBattleground();
         battleground.setVisible(true);

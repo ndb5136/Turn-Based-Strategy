@@ -184,6 +184,7 @@ public class Server
                 boolean control = true;
                 do
                 {
+                    System.out.println("Waiting for an action");
                     try 
                     {
                         action = (Action) input.readObject();

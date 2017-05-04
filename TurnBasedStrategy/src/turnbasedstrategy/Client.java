@@ -45,6 +45,7 @@ public class Client implements Runnable
     {
         
         openLogin();
+        connectToServer();
         openGame();
         
     }
@@ -88,7 +89,7 @@ public class Client implements Runnable
         return action;
     }
     
-    public void sendAction(Action action)
+    public static void sendAction(Action action)
     {
         try 
         {
